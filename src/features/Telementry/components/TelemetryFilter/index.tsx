@@ -1,6 +1,5 @@
-import { TELEMETRY_TYPE_LABELS } from '../../data/telemetry';
-import type { TelemetryType } from '../../domain/telemetry';
-import { ChipList, SelectableChip } from '../Chip';
+import { ChipList, SelectableChip } from '../../../../components/Chip';
+import { TelemetryType, TELEMETRY_TYPE_LABELS } from '../../telemetry';
 import styles from './styles.module.css';
 
 export type TelemetryFilterOptions = {
@@ -11,9 +10,11 @@ export type TelemetryFilterOptions = {
 export const TelemetryFilter = ({
 	options,
 	setOptions,
+	onReset,
 }: {
 	options: TelemetryFilterOptions;
 	setOptions: (options: TelemetryFilterOptions) => any;
+	onReset: () => any;
 }) => {
 	return (
 		<div class={styles.filterList}>
@@ -22,6 +23,7 @@ export const TelemetryFilter = ({
 				<ChipList>
 					{Object.entries(TELEMETRY_TYPE_LABELS).map(([type, label]) => {
 						const isActive = options.selectedTypes.includes(type as TelemetryType);
+
 						return (
 							<SelectableChip
 								active={isActive}
@@ -42,7 +44,7 @@ export const TelemetryFilter = ({
 			</div>
 
 			<div class={styles.filter}>
-				<label class={styles.filterLabel}>Search tool</label>
+				<label class={styles.filterLabel}>Search by name</label>
 				<input
 					type="search"
 					value={options.searchQuery || ''}
@@ -54,6 +56,12 @@ export const TelemetryFilter = ({
 					}
 				/>
 			</div>
+
+			{(options.searchQuery || options.selectedTypes.length > 0) && (
+				<div class={styles.filter}>
+					<button onClick={() => onReset()}>Reset filters</button>
+				</div>
+			)}
 		</div>
 	);
 };

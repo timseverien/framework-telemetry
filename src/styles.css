@@ -1,28 +1,65 @@
+/* @link https://utopia.fyi/type/calculator?c=320,16,1.2,1240,24,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 :root {
-	--telemetry-table-tool-width: 10em;
-	--table-cell-padding-inline: 2em;
+	--step--2: clamp(0.69rem, calc(0.6rem + 0.46vw), 0.96rem);
+	--step--1: clamp(0.83rem, calc(0.71rem + 0.64vw), 1.2rem);
+	--step-0: clamp(1rem, calc(0.83rem + 0.87vw), 1.5rem);
+	--step-1: clamp(1.2rem, calc(0.97rem + 1.17vw), 1.88rem);
+	--step-2: clamp(1.44rem, calc(1.13rem + 1.57vw), 2.34rem);
+	--step-3: clamp(1.73rem, calc(1.31rem + 2.09vw), 2.93rem);
+	--step-4: clamp(2.07rem, calc(1.52rem + 2.76vw), 3.66rem);
+	--step-5: clamp(2.49rem, calc(1.76rem + 3.63vw), 4.58rem);
+}
 
+:root {
+	--table-cell-padding-inline: var(--step--2);
+	--table-cell-padding-block: var(--step--2);
+
+	--background-primary: #f7f9fa;
+	--card-background: #fcfcfc;
+	--card-border: 1px solid #eff1f5;
+
+	color: #1b212e;
 	font-family: sans-serif;
+	background-color: var(--background-primary);
 }
 
 table {
 	border-collapse: collapse;
+	width: 100%;
+}
+
+table caption {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: auto;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	white-space: nowrap;
 }
 
 th {
 	text-align: start;
 }
 
-td,
-th {
-	padding-block: 1em;
+:is(td, th):not(:is(:first-child, :last-child)) {
+	padding-block: var(--table-cell-padding-block);
 	padding-inline: var(--table-cell-padding-inline);
 }
 
-tbody tr:nth-child(even) > :is(td, th) {
-	background-color: #fafafa;
+tr > :is(td, th) {
+	border-block-end: var(--card-border);
 }
 
 input {
-	padding: 0.5em;
+	background-color: transparent;
+	color: #1b212e;
+	border-radius: 0.5em;
+	border: 1px solid currentColor;
+	vertical-align: middle;
+	padding-block: 0.5em;
+	padding-inline: 0.75em;
+	height: 2.5em;
 }

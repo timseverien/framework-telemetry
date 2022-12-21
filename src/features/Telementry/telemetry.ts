@@ -1,9 +1,15 @@
-import type {
-	TelemetryInformation,
-	TelemetryInformationType,
-	TelemetryScope,
-	TelemetryType,
-} from '../domain/telemetry';
+export type TelemetryInformationType = 'DEVICE' | 'ENVIRONMENT' | 'PERSONAL' | 'PROJECT' | 'USAGE';
+export type TelemetryScope = 'CLI' | 'CLIENT_SIDE' | 'INSTALLATION';
+export type TelemetryType = 'NONE' | 'OPT_IN' | 'OPT_OUT';
+
+export type TelemetryInformation = {
+	name: string;
+	scopes: TelemetryScope[];
+	type: TelemetryType;
+	informationType: TelemetryInformationType[];
+	resource: string | null;
+	website: string;
+};
 
 export const TELEMETRY_TOOL_LIST: TelemetryInformation[] = [
 	{
@@ -116,7 +122,6 @@ export const TELEMETRY_TYPE_LABELS: { [key in TelemetryType]: string } = {
 	NONE: 'None',
 	OPT_IN: 'Opt-in',
 	OPT_OUT: 'Opt-out',
-	UNKNOWN: 'Unknown',
 };
 
 export const TELEMETRY_INFORMATION_TYPE_LABELS: { [key in TelemetryInformationType]: string } = {

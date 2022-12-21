@@ -1,6 +1,6 @@
 ---
-import { TelemetryOverview } from '../components/TelemetryOverview';
-import { TELEMETRY_TOOL_LIST } from '../data/telemetry';
+import { TelemetryOverview } from '../features/Telementry/components/TelemetryOverview';
+import { TELEMETRY_TOOL_LIST } from '../features/Telementry/telemetry';
 import '../styles.css';
 ---
 
@@ -15,6 +15,12 @@ import '../styles.css';
 		<h1>Telemetry of frameworks and static site generators</h1>
 		<main>
 			<TelemetryOverview telemetryList={TELEMETRY_TOOL_LIST} client:load />
+			<p>
+				Do you feel a tool is missing? Tell <a href="https://mastodon.social/@timsev"
+					>Tim on Mastodon</a
+				>.
+			</p>
 		</main>
+		<footer></footer>
 	</body>
 </html>

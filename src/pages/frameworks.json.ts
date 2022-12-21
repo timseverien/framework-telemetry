@@ -1,4 +1,4 @@
-import { TELEMETRY_TOOL_LIST } from '../data/telemetry';
+import { TELEMETRY_TOOL_LIST } from '../features/Telementry/telemetry';
 
 export async function get() {
 	return {

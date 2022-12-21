@@ -1,7 +1,11 @@
-import { TELEMETRY_TYPE_LABELS } from '../../data/telemetry';
-import type { TelemetryInformation, TelemetryType } from '../../domain/telemetry';
-import { useArrayQueryParam, useQueryParam } from '../../functions/url';
-import { TelemetryFilter, TelemetryFilterOptions } from '../TelemetryFilter';
+import { Card } from '../../../../components/Card';
+import { useQueryParam, useArrayQueryParam } from '../../../../functions/url';
+import {
+	TELEMETRY_TYPE_LABELS,
+	type TelemetryType,
+	type TelemetryInformation,
+} from '../../telemetry';
+import { type TelemetryFilterOptions, TelemetryFilter } from '../TelemetryFilter';
 import { TelemetryTable } from '../TelemetryTable';
 
 const useTelemetryFilterOptions = (): [
@@ -28,8 +32,6 @@ const useTelemetryFilterOptions = (): [
 export const TelemetryOverview = ({ telemetryList }: { telemetryList: TelemetryInformation[] }) => {
 	const [filterOptions, setFilterOptions] = useTelemetryFilterOptions();
 
-	console.log(JSON.stringify(filterOptions, null, 2));
-
 	const telemetryListFiltered = telemetryList
 		.filter(
 			(ti) =>
@@ -48,8 +50,12 @@ export const TelemetryOverview = ({ telemetryList }: { telemetryList: TelemetryI
 		});
 
 	return (
-		<>
-			<TelemetryFilter options={filterOptions} setOptions={setFilterOptions} />
+		<Card>
+			<TelemetryFilter
+				options={filterOptions}
+				setOptions={setFilterOptions}
+				onReset={resetFilters}
+			/>
 			{telemetryListFiltered.length > 0 ? (
 				<TelemetryTable telemetryList={telemetryListFiltered} />
 			) : (
@@ -58,6 +64,6 @@ export const TelemetryOverview = ({ telemetryList }: { telemetryList: TelemetryI
 					<button onClick={() => resetFilters()}>Reset filters</button>
 				</>
 			)}
-		</>
+		</Card>
 	);
 };

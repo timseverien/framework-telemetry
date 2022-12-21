@@ -1,0 +1,7 @@
+.container {
+	overflow-x: auto;
+}
+
+.table {
+	white-space: nowrap;
+}

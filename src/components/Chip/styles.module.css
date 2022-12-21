@@ -1,20 +1,22 @@
 .chip {
 	display: inline-block;
-	background-color: #eee;
+	background-color: transparent;
+	color: #1b212e;
 	border-radius: 0.5em;
+	border: 1px solid currentColor;
 	line-height: 1;
 	vertical-align: middle;
 	padding: 0.5em;
 
 	/* Button reset bits */
-	border: 0;
 	font-size: inherit;
 	font-family: inherit;
 }
 
 .chipActive {
-	background-color: #000;
-	color: #fff;
+	background-color: #1b212e;
+	border-color: #1b212e;
+	color: var(--card-background);
 }
 
 .chipList {

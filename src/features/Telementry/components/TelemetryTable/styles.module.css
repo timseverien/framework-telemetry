@@ -1,5 +1,6 @@
 .cellTool {
 	font-weight: normal;
+	width: 1px;
 }
 
 .table {
@@ -9,4 +10,9 @@
 .tool {
 	display: flex;
 	justify-content: space-between;
+	white-space: nowrap;
+	gap: 1em;
+}
+.tool a {
+	text-decoration: none;
 }

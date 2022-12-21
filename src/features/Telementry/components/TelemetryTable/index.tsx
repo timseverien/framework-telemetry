@@ -1,7 +1,11 @@
-import { TELEMETRY_INFORMATION_TYPE_LABELS, TELEMETRY_TYPE_LABELS } from '../../data/telemetry';
-import type { TelemetryInformation } from '../../domain/telemetry';
-import { ListWithFallback } from '../ListWithFallback';
-import { VisuallyHidden } from '../VisuallyHidden';
+import { ListWithFallback } from '../../../../components/ListWithFallback';
+import { ScrollableTable } from '../../../../components/ScrollableTable';
+import { VisuallyHidden } from '../../../../components/VisuallyHidden';
+import {
+	type TelemetryInformation,
+	TELEMETRY_TYPE_LABELS,
+	TELEMETRY_INFORMATION_TYPE_LABELS,
+} from '../../telemetry';
 import styles from './styles.module.css';
 
 export const TelemetryTable = ({ telemetryList }: { telemetryList: TelemetryInformation[] }) => {
@@ -15,13 +19,14 @@ export const TelemetryTable = ({ telemetryList }: { telemetryList: TelemetryInfo
 	};
 
 	return (
-		<table class={styles.table}>
+		<ScrollableTable>
+			<caption>Telemetry in front-end frameworks and static-site generators</caption>
 			<thead>
 				<tr>
 					<th scope="col">Tool</th>
 					<th scope="col">Type</th>
 					<th scope="col">Information</th>
-					<th scope="col">Resource</th>
+					<th scope="col">Documentation</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -33,7 +38,7 @@ export const TelemetryTable = ({ telemetryList }: { telemetryList: TelemetryInfo
 								<span>
 									<a href={ti.website} target="_blank">
 										<VisuallyHidden>{getResourceHostname(ti.website)}</VisuallyHidden>
-										<span aria-hidden="true">🌍</span>
+										<img src="/icons/globe.svg" alt="" aria-hidden="true" height="16" />
 									</a>
 								</span>
 							</div>
@@ -63,6 +68,6 @@ export const TelemetryTable = ({ telemetryList }: { telemetryList: TelemetryInfo
 					</tr>
 				))}
 			</tbody>
-		</table>
+		</ScrollableTable>
 	);
 };
