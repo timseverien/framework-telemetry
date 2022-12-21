@@ -12,7 +12,11 @@
   },
   "dependencies": {
     "@astrojs/preact": "^1.2.0",
+    "@nanostores/preact": "^0.3.1",
     "astro": "^1.7.2",
     "preact": "^10.11.3"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0"
   }
 }

@@ -1,4 +1,7 @@
 ---
+import { TelemetryOverview } from '../components/TelemetryOverview';
+import { TELEMETRY_TOOL_LIST } from '../data/telemetry';
+import '../styles.css';
 ---
 
 <html lang="en">
@@ -6,10 +9,12 @@
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Telemetry of frameworks and static site generators</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<h1>Telemetry of frameworks and static site generators</h1>
+		<main>
+			<TelemetryOverview telemetryList={TELEMETRY_TOOL_LIST} client:load />
+		</main>
 	</body>
 </html>

@@ -1,0 +1,28 @@
+:root {
+	--telemetry-table-tool-width: 10em;
+	--table-cell-padding-inline: 2em;
+
+	font-family: sans-serif;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	text-align: start;
+}
+
+td,
+th {
+	padding-block: 1em;
+	padding-inline: var(--table-cell-padding-inline);
+}
+
+tbody tr:nth-child(even) > :is(td, th) {
+	background-color: #fafafa;
+}
+
+input {
+	padding: 0.5em;
+}

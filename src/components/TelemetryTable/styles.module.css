@@ -1,0 +1,12 @@
+.cellTool {
+	font-weight: normal;
+}
+
+.table {
+	width: 100%;
+}
+
+.tool {
+	display: flex;
+	justify-content: space-between;
+}

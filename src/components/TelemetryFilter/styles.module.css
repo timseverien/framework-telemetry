@@ -1,0 +1,14 @@
+.filterList {
+	display: flex;
+	gap: 1em;
+}
+
+.filter {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25em;
+}
+
+.filterLabel {
+	font-size: smaller;
+}
