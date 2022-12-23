@@ -1,13 +1,15 @@
 ---
 import { ToolOverview } from '@features/Tools/components/ToolOverview';
 import { TOOLS } from '@features/Tools/tools';
-import DefaultLayout from '@layouts/DefaultLayout.astro';
+import ContentLayout from '@layouts/ContentLayout.astro';
+
+const PAGE_TITLE = 'What do tools collect?';
 ---
 
-<DefaultLayout title="Tools">
+<ContentLayout title={PAGE_TITLE}>
 	<ToolOverview tools={TOOLS} client:load />
 	<p>
 		Do you feel a tool is missing? Tell <a href="https://mastodon.social/@timsev">Tim on Mastodon</a
 		>.
 	</p>
-</DefaultLayout>
+</ContentLayout>

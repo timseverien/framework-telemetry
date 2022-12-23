@@ -2,6 +2,15 @@ import { StateUpdater, useEffect, useState } from 'preact/hooks';
 
 const PARAM_ARRAY_SEPARATOR = ',';
 
+export const getHostname = (url: string) => {
+	try {
+		const hostname = new URL(url).hostname;
+		return hostname.startsWith('www.') ? hostname.substring(4) : hostname;
+	} catch (error) {
+		return url;
+	}
+};
+
 const getParams = () =>
 	import.meta.env.SSR ? new URLSearchParams() : new URLSearchParams(window.location.search);
 

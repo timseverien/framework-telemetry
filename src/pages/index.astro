@@ -23,17 +23,20 @@ const toolNpmDownloadMap = new WeakMap(
 const toolsHighlighted = Array.from(toolsOptOut)
 	.sort((a, b) => (toolNpmDownloadMap.get(b) ?? 0) - (toolNpmDownloadMap.get(a) ?? 0))
 	.slice(0, 4);
+
+const PAGE_TITLE = 'Telemetry of frameworks and static site generators';
 ---
 
-<DefaultLayout title="Telemetry of frameworks and static site generators">
+<DefaultLayout title={PAGE_TITLE}>
 	<main>
-		<VisuallyHidden><h1>Telemetry of frameworks and static site generators</h1></VisuallyHidden>
+		<VisuallyHidden><h1>{PAGE_TITLE}</h1></VisuallyHidden>
 		<HomeLayout>
 			<Flow class="intro">
-				<h2 class="title">Telemetry?<br />No thanks.</h2>
+				<h2 class="title">Telemetry?<br />No, thanks.</h2>
 				<p>
 					More and more front-end tools use telemetry to track how they are used. That’s not a
-					crime, but by not clearly disclosing they collect data, they leave many users unaware.
+					crime, but by not clearly notifying they start to collect data, they leave many users
+					unaware.
 				</p>
 				<Button href="/opt-out">Opt out</Button>
 			</Flow>
@@ -52,16 +55,11 @@ const toolsHighlighted = Array.from(toolsOptOut)
 	.intro {
 		padding-inline: var(--step-0);
 		font-size: var(--step-1);
-		margin-top: 25vh;
 	}
 
 	.title {
 		font-family: 'Archivo Black', sans-serif;
-		font-size: var(--step-8);
+		font-size: var(--step-7);
 		margin-block-end: var(--step-0);
-	}
-
-	.tools {
-		margin-top: 25vh;
 	}
 </style>

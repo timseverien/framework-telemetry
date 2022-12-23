@@ -1,3 +1,6 @@
-import type { FunctionalComponent } from 'preact';
+import type { FunctionalComponent, JSX } from 'preact';
 
-export const Flow: FunctionalComponent = ({ children }) => <div class="flow">{children}</div>;
+export const Flow: FunctionalComponent<{ element?: keyof JSX.IntrinsicElements }> = ({
+	children,
+	element: Element = 'div',
+}) => <Element class="flow">{children}</Element>;

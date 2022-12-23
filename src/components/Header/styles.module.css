@@ -1,0 +1,19 @@
+.header {
+}
+
+.navigationList {
+	display: flex;
+	gap: var(--step-0);
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.link {
+	color: inherit;
+	font-weight: bold;
+	text-decoration: none;
+}
+.link:hover {
+	text-decoration: underline;
+}

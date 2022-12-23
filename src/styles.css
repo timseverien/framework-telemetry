@@ -52,6 +52,7 @@
 	--card-border: 1px solid #eff1f5;
 
 	--color-primary: #5a20cb;
+	--color-primary-fade: #7220cb;
 	--color-background: #1c1b21;
 	--color-foreground: #fff;
 
@@ -66,6 +67,7 @@
 
 body {
 	padding: var(--body-padding);
+	line-height: 1.5;
 }
 
 table {
@@ -112,6 +114,10 @@ input {
 	height: 2.5em;
 }
 
+* {
+	margin: 0;
+}
+
 h1,
 h2,
 h3,
@@ -136,4 +142,8 @@ h4 {
 }
 h5 {
 	font-size: var(--step-1);
+}
+
+.flow > * + * {
+	margin-block-start: 1em;
 }

@@ -1,17 +1,65 @@
 ---
-import { getToolSlug } from '@domain/tool';
+import { Code } from '@components/Code';
+import { Flow } from '@components/Flow';
+import { VisuallyHidden } from '@components/VisuallyHidden';
+import { getToolSlug, Tool } from '@domain/tool';
 import { TOOLS } from '@features/Tools/tools';
+import { getHostname } from '@functions/url';
+import DefaultLayout from '@layouts/DefaultLayout.astro';
 
 export function getStaticPaths() {
 	return TOOLS.map((tool) => ({
 		params: {
 			slug: getToolSlug(tool),
-			name: tool.name,
 		},
+		props: tool,
 	}));
 }
 
-const { name } = Astro.params;
+const { name, website, telemetry } = Astro.props as Tool;
 ---
 
-<h1>{name}</h1>
+<DefaultLayout title={`Telemetry in ${name}`}>
+	<Flow element="main">
+		<h1>
+			<VisuallyHidden>Telemetry in</VisuallyHidden>
+			{name}
+		</h1>
+
+		<dl>
+			<dt>Website:</dt>
+			<dd><a href={website}>{getHostname(website)}</a></dd>
+		</dl>
+
+		{
+			telemetry.type === 'OPT_OUT' && (
+				<>
+					<h2>
+						How to opt out <VisuallyHidden>of {name}</VisuallyHidden>
+					</h2>
+					<ul>
+						{telemetry.optOutOptions.map((option) => {
+							switch (option.type) {
+								case 'COMMAND':
+									return (
+										<li>
+											<p>Run this command:</p>
+											{/* prettier-ignore */}
+											<pre><code>{option.value}</code></pre>
+										</li>
+									);
+								case 'ENVIRONMENT_VARIABLE':
+									return (
+										<li>
+											<p>Add this to your environment variable to permanently disable telemetry:</p>
+											<Code>{option.value}</Code>
+										</li>
+									);
+							}
+						})}
+					</ul>
+				</>
+			)
+		}
+	</Flow>
+</DefaultLayout>
