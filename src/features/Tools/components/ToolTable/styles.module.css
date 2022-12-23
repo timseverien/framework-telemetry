@@ -14,5 +14,6 @@
 	gap: 1em;
 }
 .tool a {
+	color: inherit;
 	text-decoration: none;
 }

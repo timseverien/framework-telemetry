@@ -1,0 +1,13 @@
+---
+import { ToolOverview } from '@features/Tools/components/ToolOverview';
+import { TOOLS } from '@features/Tools/tools';
+import DefaultLayout from '@layouts/DefaultLayout.astro';
+---
+
+<DefaultLayout title="Tools">
+	<ToolOverview tools={TOOLS} client:load />
+	<p>
+		Do you feel a tool is missing? Tell <a href="https://mastodon.social/@timsev">Tim on Mastodon</a
+		>.
+	</p>
+</DefaultLayout>

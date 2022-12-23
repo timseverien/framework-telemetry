@@ -1,13 +1,46 @@
-/* @link https://utopia.fyi/type/calculator?c=320,16,1.2,1240,24,1.2,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+@import 'modern-css-reset';
+
+@font-face {
+	font-family: 'Archivo Black';
+	src: url('/fonts/subset-ArchivoBlack-Regular.woff2') format('woff2');
+	font-display: swap;
+	font-style: normal;
+	font-weight: 900;
+}
+
+@font-face {
+	font-family: 'Source Sans Pro';
+	src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'),
+		url('subset-SourceSansPro-Bold.woff2') format('woff2');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Source Sans Pro';
+	src: local('Source Sans Pro'), local('SourceSansPro-Regular'),
+		url('subset-SourceSansPro-Regular.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* @link https://utopia.fyi/type/calculator?c=320,16,1.2,1240,18,1.2,10,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 :root {
-	--step--2: clamp(0.69rem, calc(0.57rem + 0.6vw), 1.04rem);
-	--step--1: clamp(0.83rem, calc(0.69rem + 0.73vw), 1.25rem);
-	--step-0: clamp(1rem, calc(0.83rem + 0.87vw), 1.5rem);
-	--step-1: clamp(1.2rem, calc(0.99rem + 1.04vw), 1.8rem);
-	--step-2: clamp(1.44rem, calc(1.19rem + 1.25vw), 2.16rem);
-	--step-3: clamp(1.73rem, calc(1.43rem + 1.5vw), 2.59rem);
-	--step-4: clamp(2.07rem, calc(1.71rem + 1.8vw), 3.11rem);
-	--step-5: clamp(2.49rem, calc(2.06rem + 2.16vw), 3.73rem);
+	--step--2: clamp(0.69rem, calc(0.66rem + 0.15vw), 0.78rem);
+	--step--1: clamp(0.83rem, calc(0.8rem + 0.18vw), 0.94rem);
+	--step-0: clamp(1rem, calc(0.96rem + 0.22vw), 1.13rem);
+	--step-1: clamp(1.2rem, calc(1.15rem + 0.26vw), 1.35rem);
+	--step-2: clamp(1.44rem, calc(1.38rem + 0.31vw), 1.62rem);
+	--step-3: clamp(1.73rem, calc(1.65rem + 0.38vw), 1.94rem);
+	--step-4: clamp(2.07rem, calc(1.98rem + 0.45vw), 2.33rem);
+	--step-5: clamp(2.49rem, calc(2.38rem + 0.54vw), 2.8rem);
+	--step-6: clamp(2.99rem, calc(2.86rem + 0.65vw), 3.36rem);
+	--step-7: clamp(3.58rem, calc(3.43rem + 0.78vw), 4.03rem);
+	--step-8: clamp(4.3rem, calc(4.11rem + 0.93vw), 4.84rem);
+	--step-9: clamp(5.16rem, calc(4.94rem + 1.12vw), 5.81rem);
+	--step-10: clamp(6.19rem, calc(5.92rem + 1.35vw), 6.97rem);
 }
 
 :root {
@@ -15,12 +48,24 @@
 	--table-cell-padding-block: var(--step--2);
 
 	--background-primary: #f7f9fa;
-	--card-background: #fcfcfc;
+	--card-background: transparent;
 	--card-border: 1px solid #eff1f5;
 
-	color: #1b212e;
-	font-family: sans-serif;
-	background-color: var(--background-primary);
+	--color-primary: #5a20cb;
+	--color-background: #1c1b21;
+	--color-foreground: #fff;
+
+	--body-padding: var(--step-2);
+
+	color: var(--color-foreground);
+	background-color: var(--color-background);
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: var(--step-0);
+	/* background-color: var(--background-primary); */
+}
+
+body {
+	padding: var(--body-padding);
 }
 
 table {
@@ -40,17 +85,20 @@ table caption {
 	white-space: nowrap;
 }
 
-th {
-	text-align: start;
-}
-
-:is(td, th):not(:is(:first-child, :last-child)) {
+:is(td, th) {
 	padding-block: var(--table-cell-padding-block);
 	padding-inline: var(--table-cell-padding-inline);
+
+	text-align: start;
+	transition: background-color 0.2s;
 }
 
-tr > :is(td, th) {
+tr:not(:last-child) > :is(td, th) {
 	border-block-end: var(--card-border);
+}
+
+tr:hover > :is(td, th) {
+	background-color: var(--background-primary);
 }
 
 input {
@@ -62,4 +110,30 @@ input {
 	padding-block: 0.5em;
 	padding-inline: 0.75em;
 	height: 2.5em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	line-height: 1;
+}
+
+h1 {
+	font-family: 'Archivo Black', sans-serif;
+	font-size: var(--step-5);
+}
+h2 {
+	font-size: var(--step-4);
+}
+h3 {
+	font-size: var(--step-3);
+}
+h4 {
+	font-size: var(--step-2);
+}
+h5 {
+	font-size: var(--step-1);
 }

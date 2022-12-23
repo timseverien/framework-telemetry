@@ -1,26 +1,67 @@
 ---
-import { TelemetryOverview } from '../features/Telementry/components/TelemetryOverview';
-import { TELEMETRY_TOOL_LIST } from '../features/Telementry/telemetry';
+import { Button } from '../components/Button/Button';
+import { CardList } from '../components/Card';
+import Flow from '../components/Flow.astro';
+import HomeLayout from '../components/layout/HomeLayout.astro';
+import { ToolSummaryCard } from '../features/Tools/components/ToolSummaryCard';
+import { TOOLS } from '../features/Tools/tools';
+import DefaultLayout from '../layouts/DefaultLayout.astro';
 import '../styles.css';
+import { VisuallyHidden } from '@components/VisuallyHidden';
+import { getToolNpmDownloadCount, Tool } from '@domain/tool';
+
+const toolsOptOut = TOOLS.filter((t) => t.telemetry.type === 'OPT_OUT');
+const toolNpmDownloadMap = new WeakMap(
+	await Promise.all(
+		toolsOptOut.map<Promise<[Tool, number]>>(async (tool) => [
+			tool,
+			await getToolNpmDownloadCount(tool),
+		])
+	)
+);
+
+const toolsHighlighted = Array.from(toolsOptOut)
+	.sort((a, b) => (toolNpmDownloadMap.get(b) ?? 0) - (toolNpmDownloadMap.get(a) ?? 0))
+	.slice(0, 4);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Telemetry of frameworks and static site generators</title>
-	</head>
-	<body>
-		<h1>Telemetry of frameworks and static site generators</h1>
-		<main>
-			<TelemetryOverview telemetryList={TELEMETRY_TOOL_LIST} client:load />
-			<p>
-				Do you feel a tool is missing? Tell <a href="https://mastodon.social/@timsev"
-					>Tim on Mastodon</a
-				>.
-			</p>
-		</main>
-		<footer></footer>
-	</body>
-</html>
+<DefaultLayout title="Telemetry of frameworks and static site generators">
+	<main>
+		<VisuallyHidden><h1>Telemetry of frameworks and static site generators</h1></VisuallyHidden>
+		<HomeLayout>
+			<Flow class="intro">
+				<h2 class="title">Telemetry?<br />No thanks.</h2>
+				<p>
+					More and more front-end tools use telemetry to track how they are used. That’s not a
+					crime, but by not clearly disclosing they collect data, they leave many users unaware.
+				</p>
+				<Button href="/opt-out">Opt out</Button>
+			</Flow>
+			<Flow class="tools">
+				<VisuallyHidden><h2>Tools that track</h2></VisuallyHidden>
+				<CardList>
+					{toolsHighlighted.map((tool) => <ToolSummaryCard headingLevel={3} tool={tool} />)}
+				</CardList>
+				<Button href="/tools">See all tools</Button>
+			</Flow>
+		</HomeLayout>
+	</main>
+</DefaultLayout>
+
+<style>
+	.intro {
+		padding-inline: var(--step-0);
+		font-size: var(--step-1);
+		margin-top: 25vh;
+	}
+
+	.title {
+		font-family: 'Archivo Black', sans-serif;
+		font-size: var(--step-8);
+		margin-block-end: var(--step-0);
+	}
+
+	.tools {
+		margin-top: 25vh;
+	}
+</style>

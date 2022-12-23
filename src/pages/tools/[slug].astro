@@ -1,0 +1,17 @@
+---
+import { getToolSlug } from '@domain/tool';
+import { TOOLS } from '@features/Tools/tools';
+
+export function getStaticPaths() {
+	return TOOLS.map((tool) => ({
+		params: {
+			slug: getToolSlug(tool),
+			name: tool.name,
+		},
+	}));
+}
+
+const { name } = Astro.params;
+---
+
+<h1>{name}</h1>

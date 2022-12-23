@@ -1,0 +1,15 @@
+---
+---
+
+<div class="layout">
+	<slot />
+</div>
+
+<style>
+	.layout {
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		gap: var(--step-2);
+		min-height: calc(100vh - 2 * var(--body-padding));
+	}
+</style>

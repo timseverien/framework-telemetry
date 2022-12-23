@@ -1,10 +1,21 @@
 .card {
-	display: flex;
-	flex-direction: column;
-	gap: var(--step-0);
-
-	background-color: var(--card-background);
-	border: var(--card-border);
+	display: block;
 	border-radius: var(--step--1);
+	border: 1px solid rgba(255, 255, 255, 0.1);
 	padding: var(--step-2);
+}
+
+.cardList {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(30ch, 30ch));
+	gap: var(--step-0);
+}
+
+.cardWithLink {
+	color: inherit;
+	text-decoration: none;
+	transition: background-color 0.2s;
+}
+.cardWithLink:hover {
+	background-color: rgba(255, 255, 255, 0.1);
 }

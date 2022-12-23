@@ -1,7 +1,7 @@
-import { TELEMETRY_TOOL_LIST } from '../features/Telementry/telemetry';
+import { TOOLS } from '../features/Tools/tools';
 
 export async function get() {
 	return {
-		body: JSON.stringify(TELEMETRY_TOOL_LIST),
+		body: JSON.stringify(TOOLS),
 	};
 }
