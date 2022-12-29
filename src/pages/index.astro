@@ -1,14 +1,13 @@
 ---
 import { Button } from '../components/Button/Button';
 import { CardList } from '../components/Card';
-import Flow from '../components/Flow.astro';
-import HomeLayout from '../components/layout/HomeLayout.astro';
 import { ToolSummaryCard } from '../features/Tools/components/ToolSummaryCard';
 import { TOOLS } from '../features/Tools/tools';
-import DefaultLayout from '../layouts/DefaultLayout.astro';
 import '../styles.css';
+import { Flow } from '@components/Flow';
 import { VisuallyHidden } from '@components/VisuallyHidden';
 import { getToolNpmDownloadCount, Tool } from '@domain/tool';
+import ContentLayout from '@layouts/ContentLayout.astro';
 
 const toolsOptOut = TOOLS.filter((t) => t.telemetry.type === 'OPT_OUT');
 const toolNpmDownloadMap = new WeakMap(
@@ -27,39 +26,46 @@ const toolsHighlighted = Array.from(toolsOptOut)
 const PAGE_TITLE = 'Telemetry of frameworks and static site generators';
 ---
 
-<DefaultLayout title={PAGE_TITLE}>
-	<main>
+<ContentLayout title={PAGE_TITLE}>
+	<div slot="start">
 		<VisuallyHidden><h1>{PAGE_TITLE}</h1></VisuallyHidden>
-		<HomeLayout>
-			<Flow class="intro">
-				<h2 class="title">Telemetry?<br />No, thanks.</h2>
-				<p>
-					More and more front-end tools use telemetry to track how they are used. That’s not a
-					crime, but by not clearly notifying they start to collect data, they leave many users
-					unaware.
-				</p>
-				<Button href="/opt-out">Opt out</Button>
-			</Flow>
-			<Flow class="tools">
-				<VisuallyHidden><h2>Tools that track</h2></VisuallyHidden>
-				<CardList>
-					{toolsHighlighted.map((tool) => <ToolSummaryCard headingLevel={3} tool={tool} />)}
-				</CardList>
-				<Button href="/tools">See all tools</Button>
-			</Flow>
-		</HomeLayout>
-	</main>
-</DefaultLayout>
+		<Flow class="intro" slot="start">
+			<h2 class="title">Telemetry?<br />No, thanks 👋</h2>
+			<p>More and more front-end tools use telemetry to track how they are used.</p>
+			<p>
+				Assuming no personal identifyable information is saved, this is legal. But by not clearly
+				notifying they start to collect data, they leave many users unaware.
+			</p>
+			<p>Let’s take back our data!</p>
+			<Button href="/opt-out">Opt out</Button>
+		</Flow>
+	</div>
+
+	<div>
+		<VisuallyHidden><h2>Tools that track</h2></VisuallyHidden>
+		<Flow class="tools">
+			<CardList>
+				{toolsHighlighted.map((tool) => <ToolSummaryCard headingLevel={3} tool={tool} />)}
+			</CardList>
+			<Button href="/tools">Browse all tools</Button>
+		</Flow>
+	</div>
+</ContentLayout>
 
 <style>
 	.intro {
-		padding-inline: var(--step-0);
 		font-size: var(--step-1);
 	}
 
 	.title {
 		font-family: 'Archivo Black', sans-serif;
-		font-size: var(--step-7);
+		font-size: var(--step-5);
 		margin-block-end: var(--step-0);
+	}
+
+	@media (min-width: 90em) {
+		.title {
+			font-size: var(--step-6);
+		}
 	}
 </style>

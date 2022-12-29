@@ -26,8 +26,10 @@
 	font-display: swap;
 }
 
-/* @link https://utopia.fyi/type/calculator?c=320,16,1.2,1240,18,1.2,10,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+/* @link https://utopia.fyi/type/calculator?c=320,16,1.2,1240,18,1.2,10,4,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 :root {
+	--step--4: clamp(0.48rem, calc(0.46rem + 0.1vw), 0.54rem);
+	--step--3: clamp(0.58rem, calc(0.55rem + 0.13vw), 0.65rem);
 	--step--2: clamp(0.69rem, calc(0.66rem + 0.15vw), 0.78rem);
 	--step--1: clamp(0.83rem, calc(0.8rem + 0.18vw), 0.94rem);
 	--step-0: clamp(1rem, calc(0.96rem + 0.22vw), 1.13rem);
@@ -44,19 +46,18 @@
 }
 
 :root {
-	--table-cell-padding-inline: var(--step--2);
-	--table-cell-padding-block: var(--step--2);
-
 	--background-primary: #f7f9fa;
 	--card-background: transparent;
-	--card-border: 1px solid #eff1f5;
 
 	--color-primary: #5a20cb;
 	--color-primary-fade: #7220cb;
 	--color-background: #1c1b21;
+	--color-background-fade: #333239;
 	--color-foreground: #fff;
 
-	--body-padding: var(--step-2);
+	--border: 1px solid rgba(255, 255, 255, 0.1);
+
+	--body-padding: var(--step-5);
 
 	color: var(--color-foreground);
 	background-color: var(--color-background);
@@ -72,7 +73,6 @@ body {
 
 table {
 	border-collapse: collapse;
-	width: 100%;
 }
 
 table caption {
@@ -87,31 +87,41 @@ table caption {
 	white-space: nowrap;
 }
 
+thead :is(td, th) {
+	background-color: var(--color-background-fade);
+}
+
 :is(td, th) {
-	padding-block: var(--table-cell-padding-block);
-	padding-inline: var(--table-cell-padding-inline);
+	padding-block: var(--step-0);
+	padding-inline-start: var(--step-0);
+	padding-inline-end: var(--step-5);
 
 	text-align: start;
+	white-space: nowrap;
 	transition: background-color 0.2s;
 }
 
-tr:not(:last-child) > :is(td, th) {
-	border-block-end: var(--card-border);
+:is(td, th):last-child {
+	padding-inline-end: var(--step-0);
 }
 
-tr:hover > :is(td, th) {
-	background-color: var(--background-primary);
+thead tr:last-child,
+tbody tr:not(:last-child) > :is(td, th) {
+	border-block-end: var(--border);
+}
+
+tbody tr:hover > :is(td, th) {
+	background-color: var(--color-background-fade);
 }
 
 input {
 	background-color: transparent;
-	color: #1b212e;
-	border-radius: 0.5em;
-	border: 1px solid currentColor;
+	color: inherit;
+	border-radius: 0.25em;
+	border: var(--border);
 	vertical-align: middle;
-	padding-block: 0.5em;
 	padding-inline: 0.75em;
-	height: 2.5em;
+	height: 2em;
 }
 
 * {
@@ -144,6 +154,10 @@ h5 {
 	font-size: var(--step-1);
 }
 
-.flow > * + * {
-	margin-block-start: 1em;
+a {
+	color: inherit;
+}
+
+dt {
+	font-weight: bold;
 }

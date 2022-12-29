@@ -1,19 +1,17 @@
 .cellTool {
 	font-weight: normal;
-	width: 1px;
 }
 
-.table {
+.tableBody {
 	width: 100%;
 }
 
-.tool {
-	display: flex;
-	justify-content: space-between;
-	white-space: nowrap;
-	gap: 1em;
-}
 .tool a {
 	color: inherit;
+	font-weight: bold;
 	text-decoration: none;
+}
+
+.toolWebsite {
+	opacity: 0.5;
 }

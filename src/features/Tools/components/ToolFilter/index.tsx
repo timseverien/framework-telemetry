@@ -1,4 +1,5 @@
 import styles from './styles.module.css';
+import { Button } from '@components/Button/Button';
 import { ChipList, SelectableChip } from '@components/Chip';
 import { type TelemetryType, TELEMETRY_TYPE_LABELS } from '@domain/telemetry';
 
@@ -71,7 +72,7 @@ export const ToolFilter = ({
 				}
 			/>
 
-			<ToolNameSearch
+			{/* <ToolNameSearch
 				value={options.searchQuery || ''}
 				onChange={(searchQuery) =>
 					setOptions({
@@ -79,13 +80,15 @@ export const ToolFilter = ({
 						searchQuery,
 					})
 				}
-			/>
+			/> */}
 
-			{(options.searchQuery || options.selectedTypes.length > 0) && (
+			{/* {(options.searchQuery || options.selectedTypes.length > 0) && (
 				<div class={styles.filter}>
-					<button onClick={() => onReset()}>Reset filters</button>
+					<Button variant="secondary" onClick={() => onReset()}>
+						Reset filters
+					</Button>
 				</div>
-			)}
+			)} */}
 		</div>
 	);
 };

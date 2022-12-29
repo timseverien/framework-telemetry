@@ -1,5 +1,5 @@
-import type { TelemetryInformation } from './telemetry';
 import slugify from 'slugify';
+import type { TelemetryInformation } from './telemetry';
 
 export type Tool = {
 	name: string;
@@ -17,5 +17,5 @@ export const getToolNpmDownloadCount = async (tool: Tool) => {
 	const response = await fetch(url);
 	const { downloads } = await response.json();
 
-	return downloads;
+	return downloads as number;
 };

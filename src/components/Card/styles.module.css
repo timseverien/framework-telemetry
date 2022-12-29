@@ -1,7 +1,7 @@
 .card {
 	display: block;
-	border-radius: var(--step--1);
-	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 0.25em;
+	border: var(--border);
 	padding: var(--step-2);
 }
 
@@ -11,11 +11,16 @@
 	gap: var(--step-0);
 }
 
+.cardList > * {
+	min-width: 0;
+}
+
 .cardWithLink {
 	color: inherit;
 	text-decoration: none;
 	transition: background-color 0.2s;
 }
-.cardWithLink:hover {
-	background-color: rgba(255, 255, 255, 0.1);
+.cardWithLink:hover,
+.cardWithLink:active {
+	background-color: var(--color-background-fade);
 }

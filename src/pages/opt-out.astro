@@ -24,9 +24,13 @@ const PAGE_TITLE = 'How to opt out';
 ---
 
 <ContentLayout title={PAGE_TITLE}>
-	<p>Telemetry can be disabled per-project by running one of the following commands:</p>
-	<Code>{commands}</Code>
+	<div>
+		<Flow>
+			<p>Telemetry can be disabled per-project by running one of the following commands:</p>
+			<Code>{commands}</Code>
 
-	<p>To disable telemetry for all projects, you can save these environment variables:</p>
-	<Code>{environmentVariables}</Code>
+			<p>To disable telemetry for all projects, you can save these environment variables:</p>
+			<Code>{environmentVariables}</Code>
+		</Flow>
+	</div>
 </ContentLayout>

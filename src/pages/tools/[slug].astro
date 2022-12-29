@@ -2,13 +2,18 @@
 import { Code } from '@components/Code';
 import { Flow } from '@components/Flow';
 import { VisuallyHidden } from '@components/VisuallyHidden';
-import { getToolSlug, Tool } from '@domain/tool';
+import {
+	TELEMETRY_INFORMATION_TYPE_LABELS,
+	TELEMETRY_SCOPE_LABELS,
+	TELEMETRY_TYPE_LABELS,
+} from '@domain/telemetry';
+import { getToolNpmDownloadCount, getToolSlug, Tool } from '@domain/tool';
 import { TOOLS } from '@features/Tools/tools';
 import { getHostname } from '@functions/url';
-import DefaultLayout from '@layouts/DefaultLayout.astro';
+import ContentLayout from '@layouts/ContentLayout.astro';
 
 export function getStaticPaths() {
-	return TOOLS.map((tool) => ({
+	return TOOLS.filter((t) => t.telemetry.type === 'OPT_OUT').map((tool) => ({
 		params: {
 			slug: getToolSlug(tool),
 		},
@@ -16,50 +21,111 @@ export function getStaticPaths() {
 	}));
 }
 
-const { name, website, telemetry } = Astro.props as Tool;
+const { name, website, npm, telemetry } = Astro.props as Tool;
+
+const PAGE_TITLE = `Telemetry in ${name}`;
+
+const downloadCount = await getToolNpmDownloadCount(Astro.props as Tool);
+
+const numberFormatter = new Intl.NumberFormat('en');
+const listFormatter = new Intl.ListFormat('en', {
+	type: 'conjunction',
+	style: 'long',
+});
 ---
 
-<DefaultLayout title={`Telemetry in ${name}`}>
-	<Flow element="main">
+<ContentLayout title={PAGE_TITLE}>
+	<Flow slot="start">
 		<h1>
 			<VisuallyHidden>Telemetry in</VisuallyHidden>
 			{name}
 		</h1>
 
-		<dl>
-			<dt>Website:</dt>
-			<dd><a href={website}>{getHostname(website)}</a></dd>
-		</dl>
+		<Flow element="dl">
+			<div>
+				<dt>Website</dt>
+				<dd><a href={website} target="_blank">{getHostname(website)}</a></dd>
+			</div>
 
-		{
-			telemetry.type === 'OPT_OUT' && (
-				<>
-					<h2>
-						How to opt out <VisuallyHidden>of {name}</VisuallyHidden>
-					</h2>
-					<ul>
+			{
+				npm && (
+					<div>
+						<dt>Downloads</dt>
+						<dd>{numberFormatter.format(downloadCount)}</dd>
+					</div>
+				)
+			}
+
+			<div>
+				<dt>Telemetry</dt>
+				<dd>{TELEMETRY_TYPE_LABELS[telemetry.type]}</dd>
+			</div>
+
+			{
+				telemetry.type === 'OPT_OUT' && (
+					<>
+						<div>
+							<dt>Data collected</dt>
+							<dd>
+								{listFormatter.format(
+									telemetry.informationType.map((it) =>
+										TELEMETRY_INFORMATION_TYPE_LABELS[it].toLowerCase()
+									)
+								)}
+							</dd>
+						</div>
+
+						<div>
+							<dt>Scopes</dt>
+							<dd>
+								{listFormatter.format(
+									telemetry.scopes.map((scope) => TELEMETRY_SCOPE_LABELS[scope])
+								)}
+							</dd>
+						</div>
+
+						<div>
+							<dt>More info</dt>
+							<dd>
+								<a href={telemetry.resource}>{getHostname(telemetry.resource)}</a>
+							</dd>
+						</div>
+					</>
+				)
+			}
+		</Flow>
+	</Flow>
+
+	<div>
+		<Flow>
+			{
+				telemetry.type === 'OPT_OUT' && (
+					<>
+						<h2>
+							How to opt out <VisuallyHidden>of {name}</VisuallyHidden>
+						</h2>
 						{telemetry.optOutOptions.map((option) => {
 							switch (option.type) {
 								case 'COMMAND':
 									return (
-										<li>
+										<Flow>
 											<p>Run this command:</p>
 											{/* prettier-ignore */}
 											<pre><code>{option.value}</code></pre>
-										</li>
+										</Flow>
 									);
 								case 'ENVIRONMENT_VARIABLE':
 									return (
-										<li>
+										<Flow>
 											<p>Add this to your environment variable to permanently disable telemetry:</p>
 											<Code>{option.value}</Code>
-										</li>
+										</Flow>
 									);
 							}
 						})}
-					</ul>
-				</>
-			)
-		}
-	</Flow>
-</DefaultLayout>
+					</>
+				)
+			}
+		</Flow>
+	</div>
+</ContentLayout>

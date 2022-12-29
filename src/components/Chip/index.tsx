@@ -1,4 +1,5 @@
 import styles from './styles.module.css';
+import { createClassName } from '@functions/className';
 import type { FunctionalComponent } from 'preact';
 
 export const SelectableChip: FunctionalComponent<{ active: boolean; onClick: () => any }> = ({
@@ -8,7 +9,7 @@ export const SelectableChip: FunctionalComponent<{ active: boolean; onClick: () 
 }) => (
 	<button
 		type="button"
-		class={`${styles.chip} ${active ? styles.chipActive : null}`}
+		class={createClassName([styles.chip, active ? styles.chipActive : null])}
 		onClick={onClick}
 	>
 		{children}

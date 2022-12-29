@@ -1,7 +1,8 @@
 .container {
-	overflow-x: auto;
-}
+	background-color: var(--color-background);
+	overflow-x: scroll;
+	max-width: 100%;
 
-.table {
-	white-space: nowrap;
+	border: var(--border);
+	border-radius: 0.25em;
 }

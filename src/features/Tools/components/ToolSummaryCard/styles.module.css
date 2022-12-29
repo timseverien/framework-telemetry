@@ -1,6 +1,7 @@
 .toolSummmaryCard {
 }
 
-.toolSummmaryCard:hover {
+.toolSummmaryCard:hover,
+.toolSummmaryCard:active {
 	background-color: #fff;
 }
