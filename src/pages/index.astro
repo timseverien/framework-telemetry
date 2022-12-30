@@ -20,9 +20,9 @@ const toolNpmDownloadMap = new WeakMap(
 	)
 );
 
-const toolsHighlighted = Array.from(toolsOptOut)
-	.sort((a, b) => (toolNpmDownloadMap.get(b) ?? 0) - (toolNpmDownloadMap.get(a) ?? 0))
-	.slice(0, 4);
+const toolsHighlighted = Array.from(toolsOptOut).sort(
+	(a, b) => (toolNpmDownloadMap.get(b) ?? 0) - (toolNpmDownloadMap.get(a) ?? 0)
+);
 
 const PAGE_TITLE = site.name;
 ---
