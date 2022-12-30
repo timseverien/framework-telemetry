@@ -1,7 +1,9 @@
+import { Button } from '@components/Button/Button';
 import { ListWithFallback } from '@components/ListWithFallback';
 import { ScrollableTable } from '@components/ScrollableTable';
 import { TELEMETRY_INFORMATION_TYPE_LABELS, TELEMETRY_TYPE_LABELS } from '@domain/telemetry';
 import { getToolSlug, Tool } from '@domain/tool';
+import { createClassName } from '@functions/className';
 import { getHostname } from '@functions/url';
 import styles from './styles.module.css';
 
@@ -25,11 +27,18 @@ export const ToolTable = ({ tools }: { tools: Tool[] }) => {
 					<th scope="col">Type</th>
 					<th scope="col">Data that is collected</th>
 					<th scope="col">Documentation</th>
+					<td>&nbsp;</td>
 				</tr>
 			</thead>
 			<tbody>
 				{tools.map((tool) => (
-					<tr key={tool.name} onClick={() => onToolClick(tool)}>
+					<tr
+						key={tool.name}
+						class={createClassName([
+							tool.telemetry.type === 'OPT_OUT' ? styles.rowClickable : null,
+						])}
+						onClick={() => onToolClick(tool)}
+					>
 						<th scope="row" class={styles.cellTool}>
 							<div class={styles.tool}>
 								{tool.telemetry.type === 'OPT_OUT' ? (
@@ -64,6 +73,11 @@ export const ToolTable = ({ tools }: { tools: Tool[] }) => {
 								</a>
 							) : (
 								'-'
+							)}
+						</td>
+						<td>
+							{tool.telemetry.type === 'OPT_OUT' && (
+								<Button href={getToolUrl(tool)}>Opt out</Button>
 							)}
 						</td>
 					</tr>

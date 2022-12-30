@@ -2,6 +2,10 @@
 	font-weight: normal;
 }
 
+.rowClickable {
+	cursor: pointer;
+}
+
 .tableBody {
 	width: 100%;
 }

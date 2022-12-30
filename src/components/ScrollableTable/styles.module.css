@@ -6,3 +6,7 @@
 	border: var(--border);
 	border-radius: 0.25em;
 }
+
+.table {
+	min-width: 100%;
+}

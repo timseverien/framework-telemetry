@@ -8,15 +8,39 @@ import site from '../site.json';
 
 interface Props {
 	title: string;
+	description?: string;
 }
 
-const { title } = Astro.props;
+const { description, title } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:creator" content="@timseverien" />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:dnt" content="on" />
+		<meta name="twitter:title" content={title} />
+
+		<meta property="og:description" content={description} />
+		<meta property="og:locale" content="en" />
+		<meta property="og:site_name" content={site.name} />
+		<meta property="og:title" content={title} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+
+		<link rel="apple-touch-icon" href="/favicon.png" />
+		<link rel="icon" sizes="192x192" href="/favicon.png" />
+
+		<link rel="me" href={site.author.social.mastodon.url} />
+		<link rel="me" href={site.author.social.twitter.url} />
+
 		<title>{title !== site.name ? [title, site.name].join(' | ') : title}</title>
 	</head>
 	<body>

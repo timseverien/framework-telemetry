@@ -2,6 +2,7 @@
 import { Flow } from '@components/Flow';
 import { TOOLS } from '@features/Tools/tools';
 import ContentLayout from '@layouts/ContentLayout.astro';
+import site from '../site.json';
 
 const listFormatter = new Intl.ListFormat('en', {
 	type: 'disjunction',
@@ -9,9 +10,10 @@ const listFormatter = new Intl.ListFormat('en', {
 });
 
 const PAGE_TITLE = 'Disclaimer';
+const PAGE_DESCRIPTION = '';
 ---
 
-<ContentLayout title={PAGE_TITLE}>
+<ContentLayout title={PAGE_TITLE} description={PAGE_DESCRIPTION}>
 	<div>
 		<Flow>
 			<p>
@@ -20,12 +22,14 @@ const PAGE_TITLE = 'Disclaimer';
 				}.
 			</p>
 
+			<p>I’m not liable for whatever. Leave me alone.</p>
+
 			<p>If you’re upset about the contents of this site, talk to your therapist.</p>
 
 			<p>
-				If data on this site is outdated or wrong, say hi on <a
-					href="https://mastodon.social/@timsev"
-					target="_blank">Mastodon</a
+				If data on this site is outdated or wrong, say hi to <a
+					href={site.author.social.mastodon.url}
+					target="_blank">{site.author.social.mastodon.handle}</a
 				>.
 			</p>
 		</Flow>

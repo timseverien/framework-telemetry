@@ -1,10 +1,11 @@
+import site from '../../site.json';
 import styles from './styles.module.css';
 
 export const Footer = () => (
 	<footer class={styles.footer}>
 		<div class={styles.author}>
 			<span>Made with ❤️ by Tim Severien</span>
-			<a href="https://mastodon.social/@timsev" target="_blank">
+			<a href={site.author.social.mastodon.url} target="_blank">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216.4 232" class={styles.icon}>
 					<title>Mastodon</title>
 					<path

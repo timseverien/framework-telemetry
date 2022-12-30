@@ -1,3 +1,16 @@
 {
-  "name": "Telemetry in front-end tools"
+  "name": "Telemetry in front-end tools",
+  "description": "Don’t let tools collect your data — opt out now!",
+  "author": {
+    "social": {
+      "mastodon": {
+        "handle": "@timsev@mastodon.social",
+        "url": "https://mastodon.social/@timsev"
+      },
+      "twitter": {
+        "handle": "@timseverien",
+        "url": "https://twitter.com/@timseverien"
+      }
+    }
+  }
 }
