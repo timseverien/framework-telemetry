@@ -3,6 +3,7 @@ import { Code } from '@components/Code';
 import { Flow } from '@components/Flow';
 import { VisuallyHidden } from '@components/VisuallyHidden';
 import {
+	TELEMETRY_DISCLOSURE_LABELS,
 	TELEMETRY_INFORMATION_TYPE_LABELS,
 	TELEMETRY_SCOPE_LABELS,
 	TELEMETRY_TYPE_LABELS,
@@ -64,6 +65,11 @@ const PAGE_TITLE = `Telemetry in ${name}`;
 			{
 				telemetry.type === 'OPT_OUT' && (
 					<>
+						<div>
+							<dt>Disclosure</dt>
+							<dd>{TELEMETRY_DISCLOSURE_LABELS[telemetry.disclosure]}</dd>
+						</div>
+
 						<div>
 							<dt>Data collected</dt>
 							<dd>

@@ -7,6 +7,7 @@ export const TOOLS: Tool[] = [
 		npm: { name: 'astro' },
 		telemetry: {
 			type: 'OPT_OUT',
+			disclosure: 'DOCS',
 			scopes: ['CLI'],
 			informationType: ['DEVICE', 'ENVIRONMENT', 'USAGE'],
 			resource: 'https://docs.astro.build/en/reference/cli-reference/#astro-telemetry',
@@ -40,6 +41,7 @@ export const TOOLS: Tool[] = [
 		npm: { name: 'gatsby' },
 		telemetry: {
 			type: 'OPT_OUT',
+			disclosure: 'DOCS',
 			scopes: ['CLI'],
 			informationType: ['DEVICE', 'ENVIRONMENT', 'PROJECT', 'USAGE'],
 			resource: 'https://www.gatsbyjs.com/docs/telemetry/',
@@ -77,6 +79,7 @@ export const TOOLS: Tool[] = [
 		npm: { name: 'next' },
 		telemetry: {
 			type: 'OPT_OUT',
+			disclosure: 'DOCS',
 			scopes: ['CLI'],
 			informationType: ['DEVICE', 'ENVIRONMENT', 'PROJECT', 'USAGE'],
 			resource: 'https://nextjs.org/telemetry',
@@ -98,6 +101,7 @@ export const TOOLS: Tool[] = [
 		npm: { name: 'nuxt' },
 		telemetry: {
 			type: 'OPT_OUT',
+			disclosure: 'DOCS',
 			scopes: ['CLI'],
 			informationType: ['DEVICE', 'ENVIRONMENT', 'USAGE'],
 			resource: 'https://nuxtjs.org/docs/configuration-glossary/configuration-telemetry',
@@ -124,6 +128,28 @@ export const TOOLS: Tool[] = [
 		website: 'https://www.solidjs.com',
 		npm: { name: 'solid-js' },
 		telemetry: { type: 'NONE' },
+	},
+	{
+		name: 'Storybook',
+		website: 'https://storybook.js.org',
+		npm: { name: 'storybook' },
+		telemetry: {
+			type: 'OPT_OUT',
+			disclosure: 'INITIALIZATION',
+			scopes: ['CLI'],
+			informationType: ['ENVIRONMENT', 'PROJECT', 'USAGE'],
+			resource: 'https://storybook.js.org/docs/react/configure/telemetry',
+			optOutOptions: [
+				{
+					type: 'COMMAND',
+					value: 'storybook --disable-telemetry',
+				},
+				{
+					type: 'ENVIRONMENT_VARIABLE',
+					value: 'STORYBOOK_DISABLE_TELEMETRY=1',
+				},
+			],
+		},
 	},
 	{
 		name: 'SvelteKit',

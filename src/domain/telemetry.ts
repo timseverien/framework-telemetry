@@ -1,3 +1,4 @@
+export type TelemetryDisclosure = 'NONE' | 'DOCS' | 'INITIALIZATION' | 'INSTALLATION' | 'USAGE';
 export type TelemetryInformationType = 'DEVICE' | 'ENVIRONMENT' | 'PERSONAL' | 'PROJECT' | 'USAGE';
 export type TelemetryScope = 'CLI' | 'CLIENT_SIDE' | 'INSTALLATION';
 export type TelemetryType = 'NONE' | 'OPT_IN' | 'OPT_OUT';
@@ -20,6 +21,7 @@ export type TelemetryInformationNone = { type: 'NONE' };
 
 export type TelemetryInformationOptOut = {
 	type: 'OPT_OUT';
+	disclosure: TelemetryDisclosure;
 	scopes: TelemetryScope[];
 	informationType: TelemetryInformationType[];
 	resource: string;
@@ -27,6 +29,14 @@ export type TelemetryInformationOptOut = {
 };
 
 export type TelemetryInformation = TelemetryInformationNone | TelemetryInformationOptOut;
+
+export const TELEMETRY_DISCLOSURE_LABELS: { [key in TelemetryDisclosure]: string } = {
+	NONE: 'None',
+	DOCS: 'Documentation',
+	INITIALIZATION: 'Initialization',
+	INSTALLATION: 'Installation',
+	USAGE: 'Usage',
+};
 
 export const TELEMETRY_TYPE_LABELS: { [key in TelemetryType]: string } = {
 	NONE: 'None',
