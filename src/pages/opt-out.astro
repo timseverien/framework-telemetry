@@ -4,7 +4,6 @@ import { Flow } from '@components/Flow';
 import type { TelemetryInformationOptOut, TelemetryOptOutCommandOption } from '@domain/telemetry';
 import { TOOLS } from '@features/Tools/tools';
 import ContentLayout from '@layouts/ContentLayout.astro';
-import DefaultLayout from '@layouts/DefaultLayout.astro';
 
 const commands = TOOLS.map((t) => t.telemetry)
 	.filter((t): t is TelemetryInformationOptOut => t.type === 'OPT_OUT')

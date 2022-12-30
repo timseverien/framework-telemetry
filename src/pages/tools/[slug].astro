@@ -23,8 +23,6 @@ export function getStaticPaths() {
 
 const { name, website, npm, telemetry } = Astro.props as Tool;
 
-const PAGE_TITLE = `Telemetry in ${name}`;
-
 const downloadCount = await getToolNpmDownloadCount(Astro.props as Tool);
 
 const numberFormatter = new Intl.NumberFormat('en');
@@ -32,6 +30,8 @@ const listFormatter = new Intl.ListFormat('en', {
 	type: 'conjunction',
 	style: 'long',
 });
+
+const PAGE_TITLE = `Telemetry in ${name}`;
 ---
 
 <ContentLayout title={PAGE_TITLE}>

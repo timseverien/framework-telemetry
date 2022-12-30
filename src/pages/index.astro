@@ -8,6 +8,7 @@ import { Flow } from '@components/Flow';
 import { VisuallyHidden } from '@components/VisuallyHidden';
 import { getToolNpmDownloadCount, Tool } from '@domain/tool';
 import ContentLayout from '@layouts/ContentLayout.astro';
+import site from '../site.json';
 
 const toolsOptOut = TOOLS.filter((t) => t.telemetry.type === 'OPT_OUT');
 const toolNpmDownloadMap = new WeakMap(
@@ -23,7 +24,7 @@ const toolsHighlighted = Array.from(toolsOptOut)
 	.sort((a, b) => (toolNpmDownloadMap.get(b) ?? 0) - (toolNpmDownloadMap.get(a) ?? 0))
 	.slice(0, 4);
 
-const PAGE_TITLE = 'Telemetry of frameworks and static site generators';
+const PAGE_TITLE = site.name;
 ---
 
 <ContentLayout title={PAGE_TITLE}>
