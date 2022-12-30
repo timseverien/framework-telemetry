@@ -1,63 +1,15 @@
-import { useEffect, useState } from 'preact/hooks';
-
+import settings from './settings.json';
 import styles from './styles.module.css';
 
-const useTime = () => {
-	const getNow = () => Date.now();
-	const [time, setTime] = useState(getNow());
-
-	useEffect(() => {
-		const update = () => {
-			const now = getNow();
-			const delta = now - time;
-
-			setTime(time + delta);
-			requestAnimationFrame(update);
-		};
-
-		requestAnimationFrame(update);
-	}, []);
-
-	return [time / 1000];
-};
-
-const useViewportSize = () => {
-	const [height, setHeight] = useState(1);
-	const [width, setWidth] = useState(1);
-
-	useEffect(() => {
-		if (import.meta.env.SSR) return;
-
-		setHeight(window.innerHeight);
-		setWidth(window.innerWidth);
-
-		window.addEventListener('resize', () => {
-			setHeight(window.innerHeight);
-			setWidth(window.innerWidth);
-		});
-	}, []);
-
-	return [width, height];
-};
-
 export const Background = () => {
-	// const [t] = useTime();
-	// const [width, height] = useViewportSize();
-	const width = 1024;
-	const height = 768;
+	const width = 768;
+	const height = 48;
+	const length = 0.5 * height;
 
-	const vmin = Math.min(width, height) / 100;
-	const length = height;
-
-	const lineCount = 16;
+	const lineCount = settings.lineCount;
 	const lines = Array.from({ length: lineCount }, (_, index) => ({
-		// xOffset: index * 5 * vmin,
-		// length: vmin * 5 + vmin * 2,
-
-		x: index * 5,
+		x: (index / lineCount) * (width - 0.5 * height),
 	}));
-
-	const lineAngle = Math.PI / 4;
 
 	return (
 		<svg class={styles.background} width={width} height={height}>
@@ -70,24 +22,18 @@ export const Background = () => {
 
 			<g>
 				{lines.map(({ x }) => {
-					// const x1 = xOffset + length * Math.cos(-lineAngle);
-					// const y1 = length * Math.sin(-lineAngle);
-					// const x2 = x1 + 2 * length * Math.cos(lineAngle);
-					// const y2 = y1 + 2 * length * Math.sin(lineAngle);
-
-					const y1 = -length;
+					const y1 = -0.5 * length;
 					const y2 = length;
 
 					return (
 						<line
 							class={styles.line}
-							x1={x}
-							x2={x}
+							x1={x + y1}
+							x2={x + y2}
 							y1={y1}
 							y2={y2}
 							stroke="url(#background-line-gradient)"
 							stroke-linecap="round"
-							stroke-width={vmin}
 						/>
 					);
 				})}

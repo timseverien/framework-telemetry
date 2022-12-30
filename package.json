@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate-stick-animation": "ts-node scripts/generate-stick-css-animation 'stick-animation' 16"
+    "generate-background-css": "ts-node scripts/generate-background-css 'background-line-wave' '.line'"
   },
   "dependencies": {
     "@astrojs/preact": "^0.2.0",
