@@ -23,8 +23,9 @@
 .button--primary:hover,
 .button--primary:active {
 	outline: 1px solid currentColor;
-	background-color: transparent;
+	background-color: var(--color-foreground);
 	background-image: none;
+	color: var(--color-background);
 }
 
 .button--ghost {

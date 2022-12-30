@@ -41,14 +41,20 @@ const useViewportSize = () => {
 };
 
 export const Background = () => {
-	const [t] = useTime();
-	const [width, height] = useViewportSize();
+	// const [t] = useTime();
+	// const [width, height] = useViewportSize();
+	const width = 1024;
+	const height = 768;
+
 	const vmin = Math.min(width, height) / 100;
+	const length = height;
 
 	const lineCount = 16;
 	const lines = Array.from({ length: lineCount }, (_, index) => ({
-		xOffset: index * 5 * vmin,
-		length: vmin * 5 + vmin * 2 * Math.sin(t / 2 + (index / lineCount) * 2 * Math.PI),
+		// xOffset: index * 5 * vmin,
+		// length: vmin * 5 + vmin * 2,
+
+		x: index * 5,
 	}));
 
 	const lineAngle = Math.PI / 4;
@@ -62,24 +68,30 @@ export const Background = () => {
 				</linearGradient>
 			</defs>
 
-			{lines.map(({ xOffset, length }) => {
-				const x1 = xOffset;
-				const y1 = 0;
-				const x2 = x1 + length * Math.cos(lineAngle);
-				const y2 = y1 + length * Math.sin(lineAngle);
+			<g>
+				{lines.map(({ x }) => {
+					// const x1 = xOffset + length * Math.cos(-lineAngle);
+					// const y1 = length * Math.sin(-lineAngle);
+					// const x2 = x1 + 2 * length * Math.cos(lineAngle);
+					// const y2 = y1 + 2 * length * Math.sin(lineAngle);
 
-				return (
-					<line
-						x1={x1}
-						x2={x2}
-						y1={y1}
-						y2={y2}
-						stroke="url(#background-line-gradient)"
-						stroke-linecap="round"
-						stroke-width={vmin}
-					/>
-				);
-			})}
+					const y1 = -length;
+					const y2 = length;
+
+					return (
+						<line
+							class={styles.line}
+							x1={x}
+							x2={x}
+							y1={y1}
+							y2={y2}
+							stroke="url(#background-line-gradient)"
+							stroke-linecap="round"
+							stroke-width={vmin}
+						/>
+					);
+				})}
+			</g>
 		</svg>
 	);
 };

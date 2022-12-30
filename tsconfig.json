@@ -11,5 +11,12 @@
       "@functions/*": ["src/functions/*"],
       "@layouts/*": ["src/layouts/*"]
     }
+  },
+  "ts-node": {
+    "esm": true,
+    "compilerOptions": {
+      "esModuleInterop": true,
+      "moduleResolution": "node"
+    }
   }
 }

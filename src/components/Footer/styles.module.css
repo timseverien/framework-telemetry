@@ -1,8 +1,15 @@
 .footer {
 	display: flex;
-	gap: var(--step--4);
+	gap: var(--step--2);
+	justify-content: space-between;
+	font-size: var(--step--1);
+}
+
+.author {
+	display: flex;
+	gap: var(--step--2);
 }
 
 .icon {
-	height: var(--step-0);
+	height: var(--step--2);
 }

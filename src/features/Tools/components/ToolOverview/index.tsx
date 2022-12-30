@@ -1,10 +1,10 @@
-import { ToolFilter, ToolFilterOptions } from '../ToolFilter';
-import { ToolTable } from '../ToolTable';
 import { Button } from '@components/Button/Button';
 import { Flow } from '@components/Flow';
 import { TelemetryType, TELEMETRY_TYPE_LABELS } from '@domain/telemetry';
 import type { Tool } from '@domain/tool';
-import { useQueryParam, useArrayQueryParam } from '@functions/url';
+import { useArrayQueryParam, useQueryParam } from '@functions/url';
+import { ToolFilter, ToolFilterOptions } from '../ToolFilter';
+import { ToolTable } from '../ToolTable';
 
 const useToolFilterOptions = (): [ToolFilterOptions, (options: ToolFilterOptions) => any] => {
 	const [searchQuery, setSearchQuery] = useQueryParam('q');
@@ -49,14 +49,7 @@ export const ToolOverview = ({ tools }: { tools: Tool[] }) => {
 		<Flow size={2}>
 			<ToolFilter options={filterOptions} setOptions={setFilterOptions} onReset={resetFilters} />
 			{toolsFiltered.length > 0 ? (
-				<>
-					<ToolTable tools={toolsFiltered} />
-
-					<p>
-						Do you feel a tool is missing? Tell{' '}
-						<a href="https://mastodon.social/@timsev">Tim on Mastodon</a>.
-					</p>
-				</>
+				<ToolTable tools={toolsFiltered} />
 			) : (
 				<Flow>
 					<p>No results for these filters!</p>

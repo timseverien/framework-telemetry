@@ -157,6 +157,18 @@ h5 {
 a {
 	color: inherit;
 }
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: underline;
+}
+
+pre {
+	border: var(--border);
+	border-radius: 0.25em;
+	padding: var(--step-0);
+}
 
 dt {
 	font-weight: bold;

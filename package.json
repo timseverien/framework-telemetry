@@ -1,23 +1,24 @@
 {
-  "name": "@example/minimal",
-  "type": "module",
-  "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate-stick-animation": "ts-node scripts/generate-stick-css-animation 'stick-animation' 16"
   },
   "dependencies": {
-    "@astrojs/preact": "^1.2.0",
+    "@astrojs/preact": "^0.2.0",
     "@nanostores/preact": "^0.3.1",
     "astro": "^1.7.2",
     "modern-css-reset": "^1.4.0",
     "preact": "^10.11.3"
   },
   "devDependencies": {
-    "slugify": "^1.6.5"
+    "slugify": "^1.6.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
   }
 }

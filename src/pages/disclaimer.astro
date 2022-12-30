@@ -1,0 +1,33 @@
+---
+import { Flow } from '@components/Flow';
+import { TOOLS } from '@features/Tools/tools';
+import ContentLayout from '@layouts/ContentLayout.astro';
+
+const listFormatter = new Intl.ListFormat('en', {
+	type: 'disjunction',
+	style: 'long',
+});
+
+const PAGE_TITLE = 'Disclaimer';
+---
+
+<ContentLayout title={PAGE_TITLE}>
+	<div>
+		<Flow>
+			<p>
+				This site or site’s author is not affiliated with {
+					listFormatter.format(TOOLS.map((t) => t.name))
+				}.
+			</p>
+
+			<p>If you’re upset about the contents of this site, talk to your therapist.</p>
+
+			<p>
+				If data on this site is outdated or wrong, say hi on <a
+					href="https://mastodon.social/@timsev"
+					target="_blank">Mastodon</a
+				>.
+			</p>
+		</Flow>
+	</div>
+</ContentLayout>

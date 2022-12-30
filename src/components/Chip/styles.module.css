@@ -8,8 +8,12 @@
 	vertical-align: middle;
 	padding: 0.5em;
 }
+.chip:hover {
+	background-color: var(--color-background-fade);
+}
 
-.chipActive {
+.chipActive,
+.chipActive:hover {
 	background-color: var(--color-primary);
 }
 
