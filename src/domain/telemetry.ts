@@ -17,6 +17,11 @@ export type TelemetryOptOutOption =
 	| TelemetryOptOutCommandOption
 	| TelemetryOptOutEnvironmentVariableOption;
 
+export type TelemetryResource = {
+	type: 'DECISION' | 'DOCUMENTATION';
+	url: string;
+};
+
 export type TelemetryInformationNone = { type: 'NONE' };
 
 export type TelemetryInformationOptIn = {
@@ -24,7 +29,7 @@ export type TelemetryInformationOptIn = {
 	disclosure: TelemetryDisclosure;
 	scopes: TelemetryScope[];
 	informationType: TelemetryInformationType[];
-	resource: string;
+	resources: TelemetryResource[];
 	optOutOptions: TelemetryOptOutOption[];
 };
 
@@ -33,7 +38,7 @@ export type TelemetryInformationOptOut = {
 	disclosure: TelemetryDisclosure;
 	scopes: TelemetryScope[];
 	informationType: TelemetryInformationType[];
-	resource: string;
+	resources: TelemetryResource[];
 	optOutOptions: TelemetryOptOutOption[];
 };
 
@@ -48,6 +53,11 @@ export const TELEMETRY_DISCLOSURE_LABELS: { [key in TelemetryDisclosure]: string
 	INITIALIZATION: 'Initialization',
 	INSTALLATION: 'Installation',
 	USAGE: 'Usage',
+};
+
+export const TELEMETRY_RESOURCE_TYPE_LABELS: { [key in TelemetryResource['type']]: string } = {
+	DECISION: 'Decision',
+	DOCUMENTATION: 'Documentation',
 };
 
 export const TELEMETRY_TYPE_LABELS: { [key in TelemetryType]: string } = {

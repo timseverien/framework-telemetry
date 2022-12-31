@@ -1,4 +1,10 @@
+import type { TelemetryResource } from '@domain/telemetry';
 import type { Tool } from '@domain/tool';
+
+const resourceOrder: TelemetryResource['type'][] = ['DOCUMENTATION', 'DECISION'];
+
+export const getResourcesSorted = (resources: TelemetryResource[]) =>
+	[...resources].sort((a, b) => resourceOrder.indexOf(a.type) - resourceOrder.indexOf(b.type));
 
 export const TOOLS: Tool[] = [
 	{
@@ -10,7 +16,16 @@ export const TOOLS: Tool[] = [
 			disclosure: 'DOCS',
 			scopes: ['CLI'],
 			informationType: ['DEVICE', 'ENVIRONMENT', 'USAGE'],
-			resource: 'https://docs.astro.build/en/reference/cli-reference/#astro-telemetry',
+			resources: [
+				{
+					type: 'DECISION',
+					url: 'https://gist.github.com/natemoo-re/c9966bad8029e4fe3cd5c0ef6e7db4d1?permalink_comment_id=4058197#gistcomment-4058197',
+				},
+				{
+					type: 'DOCUMENTATION',
+					url: 'https://docs.astro.build/en/reference/cli-reference/#astro-telemetry',
+				},
+			],
 			optOutOptions: [
 				{
 					type: 'COMMAND',
@@ -44,7 +59,16 @@ export const TOOLS: Tool[] = [
 			disclosure: 'DOCS',
 			scopes: ['CLI'],
 			informationType: ['DEVICE', 'ENVIRONMENT', 'PROJECT', 'USAGE'],
-			resource: 'https://www.gatsbyjs.com/docs/telemetry/',
+			resources: [
+				{
+					type: 'DECISION',
+					url: 'https://github.com/gatsbyjs/rfcs/pull/33',
+				},
+				{
+					type: 'DOCUMENTATION',
+					url: 'https://www.gatsbyjs.com/docs/telemetry/',
+				},
+			],
 			optOutOptions: [
 				{
 					type: 'COMMAND',
@@ -82,7 +106,16 @@ export const TOOLS: Tool[] = [
 			disclosure: 'DOCS',
 			scopes: ['CLI'],
 			informationType: ['DEVICE', 'ENVIRONMENT', 'PROJECT', 'USAGE'],
-			resource: 'https://nextjs.org/telemetry',
+			resources: [
+				{
+					type: 'DECISION',
+					url: 'https://github.com/vercel/next.js/issues/8442',
+				},
+				{
+					type: 'DOCUMENTATION',
+					url: 'https://nextjs.org/telemetry',
+				},
+			],
 			optOutOptions: [
 				{
 					type: 'COMMAND',
@@ -104,7 +137,12 @@ export const TOOLS: Tool[] = [
 			disclosure: 'DOCS',
 			scopes: ['CLI'],
 			informationType: ['DEVICE', 'ENVIRONMENT', 'USAGE'],
-			resource: 'https://nuxtjs.org/docs/configuration-glossary/configuration-telemetry',
+			resources: [
+				{
+					type: 'DOCUMENTATION',
+					url: 'https://nuxtjs.org/docs/configuration-glossary/configuration-telemetry',
+				},
+			],
 			optOutOptions: [
 				{
 					type: 'COMMAND',
@@ -138,7 +176,16 @@ export const TOOLS: Tool[] = [
 			disclosure: 'INITIALIZATION',
 			scopes: ['CLI'],
 			informationType: ['ENVIRONMENT', 'PROJECT', 'USAGE'],
-			resource: 'https://storybook.js.org/docs/react/configure/telemetry',
+			resources: [
+				{
+					type: 'DECISION',
+					url: 'https://github.com/storybookjs/storybook/pull/18046',
+				},
+				{
+					type: 'DOCUMENTATION',
+					url: 'https://storybook.js.org/docs/react/configure/telemetry',
+				},
+			],
 			optOutOptions: [
 				{
 					type: 'COMMAND',

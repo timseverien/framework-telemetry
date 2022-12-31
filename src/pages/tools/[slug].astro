@@ -5,11 +5,12 @@ import { VisuallyHidden } from '@components/VisuallyHidden';
 import {
 	TELEMETRY_DISCLOSURE_LABELS,
 	TELEMETRY_INFORMATION_TYPE_LABELS,
+	TELEMETRY_RESOURCE_TYPE_LABELS,
 	TELEMETRY_SCOPE_LABELS,
 	TELEMETRY_TYPE_LABELS,
 } from '@domain/telemetry';
 import { getToolNpmDownloadCount, getToolSlug, Tool } from '@domain/tool';
-import { TOOLS } from '@features/Tools/tools';
+import { getResourcesSorted, TOOLS } from '@features/Tools/tools';
 import { getHostname } from '@functions/url';
 import ContentLayout from '@layouts/ContentLayout.astro';
 
@@ -58,7 +59,7 @@ const PAGE_TITLE = `Telemetry in ${name}`;
 			}
 
 			<div>
-				<dt>Telemetry</dt>
+				<dt>Telemetry kind</dt>
 				<dd>{TELEMETRY_TYPE_LABELS[telemetry.type]}</dd>
 			</div>
 
@@ -66,7 +67,7 @@ const PAGE_TITLE = `Telemetry in ${name}`;
 				telemetry.type === 'OPT_OUT' && (
 					<>
 						<div>
-							<dt>Disclosure</dt>
+							<dt>When are you first told?</dt>
 							<dd>{TELEMETRY_DISCLOSURE_LABELS[telemetry.disclosure]}</dd>
 						</div>
 
@@ -90,12 +91,23 @@ const PAGE_TITLE = `Telemetry in ${name}`;
 							</dd>
 						</div>
 
-						<div>
-							<dt>More info</dt>
-							<dd>
-								<a href={telemetry.resource}>{getHostname(telemetry.resource)}</a>
-							</dd>
-						</div>
+						{telemetry.resources.length > 0 && (
+							<div>
+								<dt>Links</dt>
+								<dd>
+									<ul>
+										{getResourcesSorted(telemetry.resources).map((resource) => (
+											<li>
+												{TELEMETRY_RESOURCE_TYPE_LABELS[resource.type]}:
+												<a href={resource.url} target="_blank">
+													{getHostname(resource.url)}
+												</a>
+											</li>
+										))}
+									</ul>
+								</dd>
+							</div>
+						)}
 					</>
 				)
 			}
@@ -115,7 +127,7 @@ const PAGE_TITLE = `Telemetry in ${name}`;
 								case 'COMMAND':
 									return (
 										<Flow>
-											<p>Run this command:</p>
+											<p>Telemetry can be disabled per-project by running the following command:</p>
 											{/* prettier-ignore */}
 											<pre><code>{option.value}</code></pre>
 										</Flow>
@@ -123,8 +135,15 @@ const PAGE_TITLE = `Telemetry in ${name}`;
 								case 'ENVIRONMENT_VARIABLE':
 									return (
 										<Flow>
-											<p>Add this to your environment variable to permanently disable telemetry:</p>
+											<p>
+												To disable telemetry for all projects, you can save these environment
+												variables:
+											</p>
 											<Code>{option.value}</Code>
+											<p>
+												Make sure to add these to <em>all</em> environments that uses the tool, like
+												your Continuous Integration build server.
+											</p>
 										</Flow>
 									);
 							}

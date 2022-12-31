@@ -26,7 +26,6 @@ export const ToolTable = ({ tools }: { tools: Tool[] }) => {
 					<th scope="col">Tool</th>
 					<th scope="col">Type</th>
 					<th scope="col">Data that is collected</th>
-					<th scope="col">Documentation</th>
 					<td>&nbsp;</td>
 				</tr>
 			</thead>
@@ -34,14 +33,12 @@ export const ToolTable = ({ tools }: { tools: Tool[] }) => {
 				{tools.map((tool) => (
 					<tr
 						key={tool.name}
-						class={createClassName([
-							tool.telemetry.type === 'OPT_OUT' ? styles.rowClickable : null,
-						])}
+						class={createClassName([tool.telemetry.type !== 'NONE' ? styles.rowClickable : null])}
 						onClick={() => onToolClick(tool)}
 					>
 						<th scope="row" class={styles.cellTool}>
 							<div class={styles.tool}>
-								{tool.telemetry.type === 'OPT_OUT' ? (
+								{tool.telemetry.type !== 'NONE' ? (
 									<a href={getToolUrl(tool)}>{tool.name}</a>
 								) : (
 									<b>{tool.name}</b>
@@ -67,18 +64,7 @@ export const ToolTable = ({ tools }: { tools: Tool[] }) => {
 							)}
 						</td>
 						<td>
-							{tool.telemetry.type === 'OPT_OUT' ? (
-								<a href={tool.telemetry.resource} target="_blank">
-									{getHostname(tool.telemetry.resource)}
-								</a>
-							) : (
-								'-'
-							)}
-						</td>
-						<td>
-							{tool.telemetry.type === 'OPT_OUT' && (
-								<Button href={getToolUrl(tool)}>Opt out</Button>
-							)}
+							{tool.telemetry.type !== 'NONE' && <Button href={getToolUrl(tool)}>Opt out</Button>}
 						</td>
 					</tr>
 				))}
