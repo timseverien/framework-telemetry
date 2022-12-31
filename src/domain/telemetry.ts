@@ -19,6 +19,15 @@ export type TelemetryOptOutOption =
 
 export type TelemetryInformationNone = { type: 'NONE' };
 
+export type TelemetryInformationOptIn = {
+	type: 'OPT_IN';
+	disclosure: TelemetryDisclosure;
+	scopes: TelemetryScope[];
+	informationType: TelemetryInformationType[];
+	resource: string;
+	optOutOptions: TelemetryOptOutOption[];
+};
+
 export type TelemetryInformationOptOut = {
 	type: 'OPT_OUT';
 	disclosure: TelemetryDisclosure;
@@ -28,7 +37,10 @@ export type TelemetryInformationOptOut = {
 	optOutOptions: TelemetryOptOutOption[];
 };
 
-export type TelemetryInformation = TelemetryInformationNone | TelemetryInformationOptOut;
+export type TelemetryInformation =
+	| TelemetryInformationNone
+	| TelemetryInformationOptIn
+	| TelemetryInformationOptOut;
 
 export const TELEMETRY_DISCLOSURE_LABELS: { [key in TelemetryDisclosure]: string } = {
 	NONE: 'None',
