@@ -133,8 +133,8 @@ export const TOOLS: Tool[] = [
 		website: 'https://nuxtjs.org',
 		npm: { name: 'nuxt' },
 		telemetry: {
-			type: 'OPT_OUT',
-			disclosure: 'DOCS',
+			type: 'OPT_IN',
+			disclosure: 'USAGE',
 			scopes: ['CLI'],
 			informationType: ['DEVICE', 'ENVIRONMENT', 'USAGE'],
 			resources: [

@@ -10,17 +10,17 @@ import { getToolNpmDownloadCount, Tool } from '@domain/tool';
 import ContentLayout from '@layouts/ContentLayout.astro';
 import site from '../site.json';
 
-const toolsOptOut = TOOLS.filter((t) => t.telemetry.type === 'OPT_OUT');
+const toolsThatTrack = TOOLS.filter((t) => t.telemetry.type !== 'NONE');
 const toolNpmDownloadMap = new WeakMap(
 	await Promise.all(
-		toolsOptOut.map<Promise<[Tool, number]>>(async (tool) => [
+		toolsThatTrack.map<Promise<[Tool, number]>>(async (tool) => [
 			tool,
 			await getToolNpmDownloadCount(tool),
 		])
 	)
 );
 
-const toolsHighlighted = Array.from(toolsOptOut).sort(
+const toolsHighlighted = Array.from(toolsThatTrack).sort(
 	(a, b) => (toolNpmDownloadMap.get(b) ?? 0) - (toolNpmDownloadMap.get(a) ?? 0)
 );
 
