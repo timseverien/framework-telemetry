@@ -40,6 +40,10 @@ const PAGE_TITLE = `Telemetry in ${name}`;
 if (telemetry.type === 'NONE') {
 	throw new Error('NOPE');
 }
+
+const dataCollected = listFormatter.format(
+	telemetry.informationType.map((it) => TELEMETRY_INFORMATION_TYPE_LABELS[it].toLowerCase())
+);
 ---
 
 <ContentLayout title={PAGE_TITLE}>
@@ -65,25 +69,23 @@ if (telemetry.type === 'NONE') {
 			}
 
 			<div>
-				<dt>Telemetry kind</dt>
-				<dd>{TELEMETRY_TYPE_LABELS[telemetry.type]}</dd>
+				<dt>Is consent required?</dt>
+				<dd>
+					{telemetry.type === 'OPT_IN' ? 'Yes' : 'No'} ({
+						TELEMETRY_TYPE_LABELS[telemetry.type].toLowerCase()
+					})
+				</dd>
 			</div>
 
 			<div>
-				<dt>At what point is the tracking disclosed?</dt>
+				<dt>At what point is the data collection disclosed?</dt>
 				<dd>{TELEMETRY_DISCLOSURE_LABELS[telemetry.disclosure]}</dd>
 			</div>
 
 			<div>
 				<dt>Data collected</dt>
 				<dd>
-					{
-						listFormatter.format(
-							telemetry.informationType.map((it) =>
-								TELEMETRY_INFORMATION_TYPE_LABELS[it].toLowerCase()
-							)
-						)
-					}
+					{dataCollected.substring(0, 1).toLocaleLowerCase() + dataCollected.substring(1)}
 				</dd>
 			</div>
 
