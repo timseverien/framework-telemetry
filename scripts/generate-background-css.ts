@@ -24,7 +24,7 @@ ${CSS_SELECTOR} {
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
 	animation-name: ${ANIMATION_NAME};
-	stroke-width: var(--${ANIMATION_NAME}-line-width);
+	stroke-width: var(--illustration-line-width);
 }
 
 ${lines

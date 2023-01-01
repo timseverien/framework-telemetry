@@ -1,0 +1,16 @@
+.score {
+	font-weight: bold;
+}
+
+.scoreDonut {
+	font-weight: bold;
+	font-size: var(--step-2);
+}
+
+.illustrationLine {
+	stroke-width: var(--illustration-line-width);
+}
+
+.text {
+	color: inherit;
+}

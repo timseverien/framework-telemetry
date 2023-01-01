@@ -1,6 +1,8 @@
 ---
 import { Code } from '@components/Code';
 import { Flow } from '@components/Flow';
+import { Score } from '@components/Score';
+import { ScoreOverview } from '@components/ScoreOverview';
 import { VisuallyHidden } from '@components/VisuallyHidden';
 import {
 	TELEMETRY_DISCLOSURE_LABELS,
@@ -15,7 +17,7 @@ import { getHostname } from '@functions/url';
 import ContentLayout from '@layouts/ContentLayout.astro';
 
 export function getStaticPaths() {
-	return TOOLS.filter((t) => t.telemetry.type === 'OPT_OUT').map((tool) => ({
+	return TOOLS.filter((t) => t.telemetry.type !== 'NONE').map((tool) => ({
 		params: {
 			slug: getToolSlug(tool),
 		},
@@ -34,6 +36,10 @@ const listFormatter = new Intl.ListFormat('en', {
 });
 
 const PAGE_TITLE = `Telemetry in ${name}`;
+
+if (telemetry.type === 'NONE') {
+	throw new Error('NOPE');
+}
 ---
 
 <ContentLayout title={PAGE_TITLE}>
@@ -63,52 +69,48 @@ const PAGE_TITLE = `Telemetry in ${name}`;
 				<dd>{TELEMETRY_TYPE_LABELS[telemetry.type]}</dd>
 			</div>
 
+			<div>
+				<dt>At what point is the tracking disclosed?</dt>
+				<dd>{TELEMETRY_DISCLOSURE_LABELS[telemetry.disclosure]}</dd>
+			</div>
+
+			<div>
+				<dt>Data collected</dt>
+				<dd>
+					{
+						listFormatter.format(
+							telemetry.informationType.map((it) =>
+								TELEMETRY_INFORMATION_TYPE_LABELS[it].toLowerCase()
+							)
+						)
+					}
+				</dd>
+			</div>
+
+			<div>
+				<dt>Scopes</dt>
+				<dd>
+					{listFormatter.format(telemetry.scopes.map((scope) => TELEMETRY_SCOPE_LABELS[scope]))}
+				</dd>
+			</div>
+
 			{
-				telemetry.type === 'OPT_OUT' && (
-					<>
-						<div>
-							<dt>When are you first told?</dt>
-							<dd>{TELEMETRY_DISCLOSURE_LABELS[telemetry.disclosure]}</dd>
-						</div>
-
-						<div>
-							<dt>Data collected</dt>
-							<dd>
-								{listFormatter.format(
-									telemetry.informationType.map((it) =>
-										TELEMETRY_INFORMATION_TYPE_LABELS[it].toLowerCase()
-									)
-								)}
-							</dd>
-						</div>
-
-						<div>
-							<dt>Scopes</dt>
-							<dd>
-								{listFormatter.format(
-									telemetry.scopes.map((scope) => TELEMETRY_SCOPE_LABELS[scope])
-								)}
-							</dd>
-						</div>
-
-						{telemetry.resources.length > 0 && (
-							<div>
-								<dt>Links</dt>
-								<dd>
-									<ul>
-										{getResourcesSorted(telemetry.resources).map((resource) => (
-											<li>
-												{TELEMETRY_RESOURCE_TYPE_LABELS[resource.type]}:
-												<a href={resource.url} target="_blank">
-													{getHostname(resource.url)}
-												</a>
-											</li>
-										))}
-									</ul>
-								</dd>
-							</div>
-						)}
-					</>
+				telemetry.resources.length > 0 && (
+					<div>
+						<dt>Links</dt>
+						<dd>
+							<ul>
+								{getResourcesSorted(telemetry.resources).map((resource) => (
+									<li>
+										{TELEMETRY_RESOURCE_TYPE_LABELS[resource.type]}:
+										<a href={resource.url} target="_blank">
+											{getHostname(resource.url)}
+										</a>
+									</li>
+								))}
+							</ul>
+						</dd>
+					</div>
 				)
 			}
 		</Flow>
@@ -116,40 +118,37 @@ const PAGE_TITLE = `Telemetry in ${name}`;
 
 	<div>
 		<Flow>
+			<ScoreOverview telemetry={telemetry} />
+
+			<h2>
+				How to opt out <VisuallyHidden>of {name}</VisuallyHidden>
+			</h2>
 			{
-				telemetry.type === 'OPT_OUT' && (
-					<>
-						<h2>
-							How to opt out <VisuallyHidden>of {name}</VisuallyHidden>
-						</h2>
-						{telemetry.optOutOptions.map((option) => {
-							switch (option.type) {
-								case 'COMMAND':
-									return (
-										<Flow>
-											<p>Telemetry can be disabled per-project by running the following command:</p>
-											{/* prettier-ignore */}
-											<pre><code>{option.value}</code></pre>
-										</Flow>
-									);
-								case 'ENVIRONMENT_VARIABLE':
-									return (
-										<Flow>
-											<p>
-												To disable telemetry for all projects, you can save these environment
-												variables:
-											</p>
-											<Code>{option.value}</Code>
-											<p>
-												Make sure to add these to <em>all</em> environments that uses the tool, like
-												your Continuous Integration build server.
-											</p>
-										</Flow>
-									);
-							}
-						})}
-					</>
-				)
+				telemetry.optOutOptions.map((option) => {
+					switch (option.type) {
+						case 'COMMAND':
+							return (
+								<Flow>
+									<p>Telemetry can be disabled per-project by running the following command:</p>
+									{/* prettier-ignore */}
+									<pre><code>{option.value}</code></pre>
+								</Flow>
+							);
+						case 'ENVIRONMENT_VARIABLE':
+							return (
+								<Flow>
+									<p>
+										To disable telemetry for all projects, you can save these environment variables:
+									</p>
+									<Code>{option.value}</Code>
+									<p>
+										Make sure to add these to <em>all</em> environments that uses the tool, like
+										your Continuous Integration build server.
+									</p>
+								</Flow>
+							);
+					}
+				})
 			}
 		</Flow>
 	</div>
