@@ -4,7 +4,7 @@
 	text-align: center;
 }
 
-@media (min-width: 60em) {
+@media (min-width: 45em) {
 	.scoreOverview {
 		grid-template-columns: repeat(3, 1fr);
 	}
