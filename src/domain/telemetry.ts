@@ -28,10 +28,14 @@ export type TelemetryResource = {
 	url: string;
 };
 
-export type TelemetryInformationNone = { type: 'NONE' };
+export type TelemetryInformationNone = {
+	type: 'NONE';
+	lastTestedVersion: string;
+};
 
 export type TelemetryInformationOptIn = {
 	type: 'OPT_IN';
+	lastTestedVersion: string;
 	disclosure: TelemetryDisclosure;
 	scopes: TelemetryScope[];
 	informationType: TelemetryInformationType[];
@@ -41,6 +45,7 @@ export type TelemetryInformationOptIn = {
 
 export type TelemetryInformationOptOut = {
 	type: 'OPT_OUT';
+	lastTestedVersion: string;
 	disclosure: TelemetryDisclosure;
 	scopes: TelemetryScope[];
 	informationType: TelemetryInformationType[];

@@ -47,6 +47,11 @@ if (telemetry.type === 'NONE') {
 
 		<Flow element="dl">
 			<div>
+				<dt>Last tested version</dt>
+				<dd>{telemetry.lastTestedVersion}</dd>
+			</div>
+
+			<div>
 				<dt>Website</dt>
 				<dd><a href={website} target="_blank">{getHostname(website)}</a></dd>
 			</div>

@@ -13,6 +13,7 @@ export const TOOLS: Tool[] = [
 		npm: { name: 'astro' },
 		telemetry: {
 			type: 'OPT_OUT',
+			lastTestedVersion: '1.7.2',
 			disclosure: 'DOCS',
 			scopes: ['CLI'],
 			informationType: ['DEVICE', 'ENVIRONMENT', 'USAGE'],
@@ -42,20 +43,27 @@ export const TOOLS: Tool[] = [
 		name: 'Create React App',
 		website: 'https://create-react-app.dev',
 		npm: { name: 'react-scripts' },
-		telemetry: { type: 'NONE' },
+		telemetry: {
+			type: 'NONE',
+			lastTestedVersion: '5.0.1',
+		},
 	},
 	{
 		name: 'Eleventy',
 		website: 'https://www.11ty.dev',
 		npm: { name: '@11ty/eleventy' },
-		telemetry: { type: 'NONE' },
+		telemetry: {
+			type: 'NONE',
+			lastTestedVersion: '1.0.2',
+		},
 	},
 	{
 		name: 'Gatsby',
-		website: 'https://wwww.gatsbyjs.com',
+		website: 'https://www.gatsbyjs.com',
 		npm: { name: 'gatsby' },
 		telemetry: {
 			type: 'OPT_OUT',
+			lastTestedVersion: '5.3.0',
 			disclosure: 'DOCS',
 			scopes: ['CLI'],
 			informationType: ['DEVICE', 'ENVIRONMENT', 'PROJECT', 'USAGE'],
@@ -85,17 +93,26 @@ export const TOOLS: Tool[] = [
 		name: 'Hexo',
 		website: 'https://hexo.io',
 		npm: { name: 'hexo' },
-		telemetry: { type: 'NONE' },
+		telemetry: {
+			type: 'NONE',
+			lastTestedVersion: '6.3.0',
+		},
 	},
 	{
 		name: 'Hugo',
 		website: 'https://gohugo.io',
-		telemetry: { type: 'NONE' },
+		telemetry: {
+			type: 'NONE',
+			lastTestedVersion: '0.109.0',
+		},
 	},
 	{
 		name: 'Jekyll',
 		website: 'https://jekyllrb.com',
-		telemetry: { type: 'NONE' },
+		telemetry: {
+			type: 'NONE',
+			lastTestedVersion: '4.3.1',
+		},
 	},
 	{
 		name: 'Next.js',
@@ -103,6 +120,7 @@ export const TOOLS: Tool[] = [
 		npm: { name: 'next' },
 		telemetry: {
 			type: 'OPT_OUT',
+			lastTestedVersion: '13.1.0',
 			disclosure: 'DOCS',
 			scopes: ['CLI'],
 			informationType: ['DEVICE', 'ENVIRONMENT', 'PROJECT', 'USAGE'],
@@ -134,6 +152,7 @@ export const TOOLS: Tool[] = [
 		npm: { name: 'nuxt' },
 		telemetry: {
 			type: 'OPT_IN',
+			lastTestedVersion: '3.0.0',
 			disclosure: 'USAGE',
 			scopes: ['CLI'],
 			informationType: ['DEVICE', 'ENVIRONMENT', 'USAGE'],
@@ -163,13 +182,19 @@ export const TOOLS: Tool[] = [
 		name: 'Remix',
 		website: 'https://remix.run',
 		npm: { name: 'remix' },
-		telemetry: { type: 'NONE' },
+		telemetry: {
+			type: 'NONE',
+			lastTestedVersion: '1.9.0',
+		},
 	},
 	{
 		name: 'Solid',
 		website: 'https://www.solidjs.com',
 		npm: { name: 'solid-js' },
-		telemetry: { type: 'NONE' },
+		telemetry: {
+			type: 'NONE',
+			lastTestedVersion: '1.6.0',
+		},
 	},
 	{
 		name: 'Storybook',
@@ -177,6 +202,7 @@ export const TOOLS: Tool[] = [
 		npm: { name: 'storybook' },
 		telemetry: {
 			type: 'OPT_OUT',
+			lastTestedVersion: '6.5.15',
 			disclosure: 'INITIALIZATION',
 			scopes: ['CLI'],
 			informationType: ['ENVIRONMENT', 'PROJECT', 'USAGE'],
@@ -210,13 +236,17 @@ export const TOOLS: Tool[] = [
 		name: 'SvelteKit',
 		website: 'https://kit.svelte.dev',
 		npm: { name: 'svelte' },
-		telemetry: { type: 'NONE' },
+		telemetry: {
+			type: 'NONE',
+			lastTestedVersion: '1.0.1',
+		},
 	},
 	{
 		name: 'Visual Studio Code',
 		website: 'https://code.visualstudio.com',
 		telemetry: {
 			type: 'OPT_OUT',
+			lastTestedVersion: '1.74.2',
 			disclosure: 'USAGE',
 			scopes: ['APP'],
 			informationType: [],
