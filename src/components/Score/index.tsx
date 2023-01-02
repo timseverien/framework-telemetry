@@ -66,7 +66,7 @@ export const ScoreDonut = ({ value }: { value: number }) => {
 				fill={getHslaColorString(colorBackground)}
 				stroke-linecap="round"
 			/>
-			<text alignment-baseline="middle" fill={getHslColorString(color)} text-anchor="middle">
+			<text y="10" fill={getHslColorString(color)} text-anchor="middle">
 				{formatScore(value)}
 			</text>
 		</svg>

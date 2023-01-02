@@ -152,6 +152,10 @@ export const TOOLS: Tool[] = [
 					type: 'ENVIRONMENT_VARIABLE',
 					value: 'NUXT_TELEMETRY_DISABLED=1',
 				},
+				{
+					type: 'SETTING',
+					value: 'telemetry: false',
+				},
 			],
 		},
 	},
@@ -195,6 +199,10 @@ export const TOOLS: Tool[] = [
 					type: 'ENVIRONMENT_VARIABLE',
 					value: 'STORYBOOK_DISABLE_TELEMETRY=1',
 				},
+				{
+					type: 'SETTING',
+					value: 'core: disableTelemetry: true }',
+				},
 			],
 		},
 	},
@@ -203,5 +211,22 @@ export const TOOLS: Tool[] = [
 		website: 'https://kit.svelte.dev',
 		npm: { name: 'svelte' },
 		telemetry: { type: 'NONE' },
+	},
+	{
+		name: 'Visual Studio Code',
+		website: 'https://code.visualstudio.com',
+		telemetry: {
+			type: 'OPT_OUT',
+			disclosure: 'USAGE',
+			scopes: ['APP'],
+			informationType: [],
+			resources: [
+				{
+					type: 'DOCUMENTATION',
+					url: 'https://code.visualstudio.com/docs/getstarted/telemetry',
+				},
+			],
+			optOutOptions: [{ type: 'SETTING', value: '"telemetry.telemetryLevel": "off"' }],
+		},
 	},
 ];

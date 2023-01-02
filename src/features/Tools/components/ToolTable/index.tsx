@@ -46,7 +46,7 @@ const ToolRow = ({ tool }: { tool: Tool }) => {
 					</a>
 				</div>
 			</th>
-			<td>
+			<td class={styles.cellScore}>
 				<Score value={getTelemetryScore(tool.telemetry)} />
 			</td>
 			<td>{TELEMETRY_TYPE_LABELS[tool.telemetry.type]}</td>

@@ -1,7 +1,8 @@
 ---
 import { Code } from '@components/Code';
+import { Code as CodeAstro } from 'astro/components';
 import { Flow } from '@components/Flow';
-import { Score } from '@components/Score';
+import { ListWithFallback } from '@components/ListWithFallback';
 import { ScoreOverview } from '@components/ScoreOverview';
 import { VisuallyHidden } from '@components/VisuallyHidden';
 import {
@@ -27,23 +28,14 @@ export function getStaticPaths() {
 
 const { name, website, npm, telemetry } = Astro.props as Tool;
 
-const downloadCount = await getToolNpmDownloadCount(Astro.props as Tool);
-
 const numberFormatter = new Intl.NumberFormat('en');
-const listFormatter = new Intl.ListFormat('en', {
-	type: 'conjunction',
-	style: 'long',
-});
+const downloadCount = await getToolNpmDownloadCount(Astro.props as Tool);
 
 const PAGE_TITLE = `Telemetry in ${name}`;
 
 if (telemetry.type === 'NONE') {
 	throw new Error('NOPE');
 }
-
-const dataCollected = listFormatter.format(
-	telemetry.informationType.map((it) => TELEMETRY_INFORMATION_TYPE_LABELS[it].toLowerCase())
-);
 ---
 
 <ContentLayout title={PAGE_TITLE}>
@@ -85,14 +77,22 @@ const dataCollected = listFormatter.format(
 			<div>
 				<dt>Data collected</dt>
 				<dd>
-					{dataCollected.substring(0, 1).toLocaleLowerCase() + dataCollected.substring(1)}
+					<ListWithFallback
+						list={telemetry.informationType.map((it) =>
+							TELEMETRY_INFORMATION_TYPE_LABELS[it].toLowerCase()
+						)}
+						fallback="Unknown"
+					/>
 				</dd>
 			</div>
 
 			<div>
 				<dt>Scopes</dt>
 				<dd>
-					{listFormatter.format(telemetry.scopes.map((scope) => TELEMETRY_SCOPE_LABELS[scope]))}
+					<ListWithFallback
+						list={telemetry.scopes.map((scope) => TELEMETRY_SCOPE_LABELS[scope])}
+						fallback="Unknown"
+					/>
 				</dd>
 			</div>
 
@@ -125,29 +125,50 @@ const dataCollected = listFormatter.format(
 			<h2>
 				How to opt out <VisuallyHidden>of {name}</VisuallyHidden>
 			</h2>
+
 			{
-				telemetry.optOutOptions.map((option) => {
+				telemetry.optOutOptions.map((option, index) => {
+					const optionNumber = 1 + index;
+
 					switch (option.type) {
 						case 'COMMAND':
 							return (
-								<Flow>
-									<p>Telemetry can be disabled per-project by running the following command:</p>
+								<>
+									<h3>{optionNumber}. Run command</h3>
+									<p>
+										This typically disables telemetry for one instance. Note that if the tool is
+										installed globally, it applies to the device. However, if the tool is installed
+										per project, you’ll have to do this for each project.
+									</p>
 									{/* prettier-ignore */}
-									<pre><code>{option.value}</code></pre>
-								</Flow>
+									<Code>{option.value}</Code>
+								</>
 							);
 						case 'ENVIRONMENT_VARIABLE':
 							return (
-								<Flow>
+								<>
+									<h3>{optionNumber}. Add environment variable</h3>
 									<p>
-										To disable telemetry for all projects, you can save these environment variables:
+										This disabled telemetry for the device you’ve set the environment variable on.
+									</p>
+									<p>
+										Note that if this tool is used elsewhere, like a during Continuous Integration,
+										you’ll have to add these environment variables there, too.
+									</p>
+
+									<Code>{option.value}</Code>
+								</>
+							);
+						case 'SETTING':
+							return (
+								<>
+									<h3>{optionNumber}. Add setting</h3>
+									<p>
+										This approach typically disables telemetry for all instances that share the
+										configuration file.
 									</p>
 									<Code>{option.value}</Code>
-									<p>
-										Make sure to add these to <em>all</em> environments that uses the tool, like
-										your Continuous Integration build server.
-									</p>
-								</Flow>
+								</>
 							);
 					}
 				})

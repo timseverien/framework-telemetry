@@ -1,6 +1,6 @@
 export type TelemetryDisclosure = 'NONE' | 'DOCS' | 'INITIALIZATION' | 'INSTALLATION' | 'USAGE';
 export type TelemetryInformationType = 'DEVICE' | 'ENVIRONMENT' | 'PERSONAL' | 'PROJECT' | 'USAGE';
-export type TelemetryScope = 'CLI' | 'CLIENT_SIDE' | 'INSTALLATION';
+export type TelemetryScope = 'APP' | 'CLI' | 'CLIENT_SIDE' | 'INSTALLATION';
 export type TelemetryType = 'NONE' | 'OPT_IN' | 'OPT_OUT';
 
 export type TelemetryOptOutCommandOption = {
@@ -13,9 +13,15 @@ export type TelemetryOptOutEnvironmentVariableOption = {
 	value: string;
 };
 
+export type TelemetryOptOutSettingOption = {
+	type: 'SETTING';
+	value: string;
+};
+
 export type TelemetryOptOutOption =
 	| TelemetryOptOutCommandOption
-	| TelemetryOptOutEnvironmentVariableOption;
+	| TelemetryOptOutEnvironmentVariableOption
+	| TelemetryOptOutSettingOption;
 
 export type TelemetryResource = {
 	type: 'DECISION' | 'DOCUMENTATION';
@@ -75,6 +81,7 @@ export const TELEMETRY_INFORMATION_TYPE_LABELS: { [key in TelemetryInformationTy
 };
 
 export const TELEMETRY_SCOPE_LABELS: { [key in TelemetryScope]: string } = {
+	APP: 'Application',
 	CLI: 'CLI',
 	CLIENT_SIDE: 'Client-side',
 	INSTALLATION: 'Installation',

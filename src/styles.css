@@ -169,6 +169,7 @@ pre {
 	border: var(--border);
 	border-radius: 0.25em;
 	padding: var(--step-0);
+	background-color: rgba(0, 0, 0, 0.25);
 }
 
 dt {
