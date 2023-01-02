@@ -33,7 +33,7 @@ const ToolRow = ({ tool }: { tool: Tool }) => {
 			<th scope="row" class={styles.cellTool}>
 				<div class={styles.tool}>
 					{tool.telemetry.type !== 'NONE' ? (
-						<a href={getToolUrl(tool)} ref={link} onClick={(event) => event.stopPropagation()}>
+						<a href={getToolUrl(tool)} ref={link}>
 							{tool.name}
 						</a>
 					) : (
@@ -41,7 +41,7 @@ const ToolRow = ({ tool }: { tool: Tool }) => {
 					)}
 				</div>
 				<div class={styles.toolWebsite}>
-					<a href={tool.website} target="_blank" onClick={(event) => event.stopPropagation()}>
+					<a href={tool.website} target="_blank">
 						{getHostname(tool.website)}
 					</a>
 				</div>
