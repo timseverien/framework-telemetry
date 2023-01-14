@@ -32,13 +32,14 @@ const numberFormatter = new Intl.NumberFormat('en');
 const downloadCount = await getToolNpmDownloadCount(Astro.props as Tool);
 
 const PAGE_TITLE = `Telemetry in ${name}`;
+const PAGE_DESCRIPTION = `How to opt out of telemetry in ${name}`;
 
 if (telemetry.type === 'NONE') {
 	throw new Error('NOPE');
 }
 ---
 
-<ContentLayout title={PAGE_TITLE}>
+<ContentLayout title={PAGE_TITLE} description={PAGE_DESCRIPTION}>
 	<Flow slot="start">
 		<h1>
 			<VisuallyHidden>Telemetry in</VisuallyHidden>

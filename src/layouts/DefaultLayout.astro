@@ -11,7 +11,7 @@ interface Props {
 	description?: string;
 }
 
-const { description, title } = Astro.props;
+const { description = site.description, title } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 

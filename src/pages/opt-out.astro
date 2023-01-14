@@ -39,9 +39,10 @@ const optOutCodeListUnix = optOutVariables.map((v) => `export ${v.key}=${v.value
 const optOutCodeListWindows = optOutVariables.map((v) => `setx ${v.key} ${v.value} /M`).join('\n');
 
 const PAGE_TITLE = 'How to opt out?';
+const PAGE_DESCRIPTION = 'Find out how you can opt out of all tools in one fell swoop.';
 ---
 
-<ContentLayout title={PAGE_TITLE}>
+<ContentLayout title={PAGE_TITLE} description={PAGE_DESCRIPTION}>
 	<div slot="start">
 		<h1>{PAGE_TITLE}</h1>
 	</div>
