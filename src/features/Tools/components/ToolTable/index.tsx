@@ -57,6 +57,7 @@ const ToolRow = ({ tool }: { tool: Tool }) => {
 							TELEMETRY_INFORMATION_TYPE_LABELS[infoType].toLowerCase()
 						)}
 						fallback="Unknown"
+						upperCaseFirstCharacter
 					/>
 				) : (
 					'-'

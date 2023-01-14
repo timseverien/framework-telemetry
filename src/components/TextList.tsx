@@ -14,7 +14,7 @@ export const TextList = ({
 		<>
 			{listFormatter.format(
 				upperCaseFirstCharacter
-					? items.map((i) => i.substring(0, 1).toLocaleLowerCase() + i.substring(1))
+					? items.map((i) => i.substring(0, 1).toLocaleUpperCase() + i.substring(1))
 					: items
 			)}
 		</>

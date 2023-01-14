@@ -88,6 +88,7 @@ if (telemetry.type === 'NONE') {
 							TELEMETRY_INFORMATION_TYPE_LABELS[it].toLowerCase()
 						)}
 						fallback="Unknown"
+						upperCaseFirstCharacter
 					/>
 				</dd>
 			</div>
@@ -98,6 +99,7 @@ if (telemetry.type === 'NONE') {
 					<TextListWithFallback
 						items={telemetry.scopes.map((scope) => TELEMETRY_SCOPE_LABELS[scope])}
 						fallback="Unknown"
+						upperCaseFirstCharacter
 					/>
 				</dd>
 			</div>
