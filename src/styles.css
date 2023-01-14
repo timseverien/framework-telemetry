@@ -11,7 +11,7 @@
 @font-face {
 	font-family: 'Source Sans Pro';
 	src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'),
-		url('subset-SourceSansPro-Bold.woff2') format('woff2');
+		url('/fonts/subset-SourceSansPro-Bold.woff2') format('woff2');
 	font-weight: bold;
 	font-style: normal;
 	font-display: swap;
@@ -20,7 +20,7 @@
 @font-face {
 	font-family: 'Source Sans Pro';
 	src: local('Source Sans Pro'), local('SourceSansPro-Regular'),
-		url('subset-SourceSansPro-Regular.woff2') format('woff2');
+		url('/fonts/subset-SourceSansPro-Regular.woff2') format('woff2');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
