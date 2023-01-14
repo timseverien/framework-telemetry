@@ -254,7 +254,7 @@ export const TOOLS: Tool[] = [
 			lastTestedVersion: '1.74.2',
 			disclosure: 'USAGE',
 			scopes: ['APP'],
-			informationType: [],
+			informationType: ['DEVICE', 'ENVIRONMENT', 'PROJECT', 'USAGE'],
 			resources: [
 				{
 					type: 'DOCUMENTATION',
