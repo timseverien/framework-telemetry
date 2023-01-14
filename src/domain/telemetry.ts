@@ -10,6 +10,7 @@ export type TelemetryOptOutCommandOption = {
 
 export type TelemetryOptOutEnvironmentVariableOption = {
 	type: 'ENVIRONMENT_VARIABLE';
+	key: string;
 	value: string;
 };
 

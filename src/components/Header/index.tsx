@@ -14,6 +14,11 @@ export const Header = () => (
 						Which tools collect what?
 					</a>
 				</li>
+				<li>
+					<a href="/opt-out" class={styles.link}>
+						How to opt out?
+					</a>
+				</li>
 			</ul>
 		</nav>
 	</head>

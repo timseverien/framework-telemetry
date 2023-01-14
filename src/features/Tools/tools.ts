@@ -34,7 +34,8 @@ export const TOOLS: Tool[] = [
 				},
 				{
 					type: 'ENVIRONMENT_VARIABLE',
-					value: 'ASTRO_TELEMETRY_DISABLED=1',
+					key: 'ASTRO_TELEMETRY_DISABLED',
+					value: '1',
 				},
 			],
 		},
@@ -84,7 +85,8 @@ export const TOOLS: Tool[] = [
 				},
 				{
 					type: 'ENVIRONMENT_VARIABLE',
-					value: 'GATSBY_TELEMETRY_DISABLED=1',
+					key: 'GATSBY_TELEMETRY_DISABLED',
+					value: '1',
 				},
 			],
 		},
@@ -141,7 +143,8 @@ export const TOOLS: Tool[] = [
 				},
 				{
 					type: 'ENVIRONMENT_VARIABLE',
-					value: 'NEXT_TELEMETRY_DISABLED=1',
+					key: 'NEXT_TELEMETRY_DISABLED',
+					value: '1',
 				},
 			],
 		},
@@ -169,7 +172,8 @@ export const TOOLS: Tool[] = [
 				},
 				{
 					type: 'ENVIRONMENT_VARIABLE',
-					value: 'NUXT_TELEMETRY_DISABLED=1',
+					key: 'NUXT_TELEMETRY_DISABLED',
+					value: '1',
 				},
 				{
 					type: 'SETTING',
@@ -201,7 +205,7 @@ export const TOOLS: Tool[] = [
 		website: 'https://storybook.js.org',
 		npm: { name: 'storybook' },
 		telemetry: {
-			type: 'OPT_OUT',
+			type: 'OPT_IN',
 			lastTestedVersion: '6.5.15',
 			disclosure: 'INITIALIZATION',
 			scopes: ['CLI'],
@@ -223,7 +227,8 @@ export const TOOLS: Tool[] = [
 				},
 				{
 					type: 'ENVIRONMENT_VARIABLE',
-					value: 'STORYBOOK_DISABLE_TELEMETRY=1',
+					key: 'STORYBOOK_DISABLE_TELEMETRY',
+					value: '1',
 				},
 				{
 					type: 'SETTING',

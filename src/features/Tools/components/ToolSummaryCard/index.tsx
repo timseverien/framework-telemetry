@@ -1,7 +1,7 @@
 import { CardWithLink } from '@components/Card';
 import { Flow } from '@components/Flow';
-import { ListWithFallback } from '@components/ListWithFallback';
 import type { HeadingLevel } from '@components/props';
+import { TextListWithFallback } from '@components/TextListWithFallback';
 import { TELEMETRY_INFORMATION_TYPE_LABELS } from '@domain/telemetry';
 import { getToolSlug, Tool } from '@domain/tool';
 import type { JSX } from 'preact/jsx-runtime';
@@ -22,7 +22,7 @@ export const ToolSummaryCard = ({ headingLevel = 2, tool }: HeadingLevel & { too
 			<Flow>
 				<Heading>{tool.name}</Heading>
 				<p>
-					Collects: <ListWithFallback list={informationTypeLabelList} fallback="unknown" />.
+					Collects: <TextListWithFallback items={informationTypeLabelList} fallback="unknown" />.
 				</p>
 			</Flow>
 		</CardWithLink>

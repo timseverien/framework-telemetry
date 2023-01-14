@@ -1,7 +1,7 @@
 import { Button } from '@components/Button/Button';
-import { ListWithFallback } from '@components/ListWithFallback';
 import { Score } from '@components/Score';
 import { ScrollableTable } from '@components/ScrollableTable';
+import { TextListWithFallback } from '@components/TextListWithFallback';
 import { TELEMETRY_INFORMATION_TYPE_LABELS, TELEMETRY_TYPE_LABELS } from '@domain/telemetry';
 import { getToolSlug, Tool } from '@domain/tool';
 import { createClassName } from '@functions/className';
@@ -52,8 +52,8 @@ const ToolRow = ({ tool }: { tool: Tool }) => {
 			<td>{TELEMETRY_TYPE_LABELS[tool.telemetry.type]}</td>
 			<td>
 				{tool.telemetry.type !== 'NONE' ? (
-					<ListWithFallback
-						list={tool.telemetry.informationType.map((infoType) =>
+					<TextListWithFallback
+						items={tool.telemetry.informationType.map((infoType) =>
 							TELEMETRY_INFORMATION_TYPE_LABELS[infoType].toLowerCase()
 						)}
 						fallback="Unknown"

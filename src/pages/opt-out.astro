@@ -1,0 +1,93 @@
+---
+import { Code } from '@components/Code';
+import { Flow } from '@components/Flow';
+import { InlineToolList } from '@components/InlineToolList';
+import { Notification } from '@components/Notification';
+import type {
+	TelemetryInformationOptOut,
+	TelemetryOptOutEnvironmentVariableOption,
+} from '@domain/telemetry';
+import ContentLayout from '@layouts/ContentLayout.astro';
+import { TOOLS } from '../features/Tools/tools';
+import '../styles.css';
+
+const optOutTools = TOOLS.filter((t) => t.telemetry.type === 'OPT_OUT');
+
+const optOutToolsWithVariables = optOutTools.filter((t) =>
+	(t.telemetry as TelemetryInformationOptOut).optOutOptions.some(
+		(o) => o.type === 'ENVIRONMENT_VARIABLE'
+	)
+);
+
+const optOutToolsWithoutVariables = optOutTools.filter(
+	(t) => !optOutToolsWithVariables.includes(t)
+);
+
+const optOutVariables = [
+	...optOutToolsWithVariables
+		.map((t) =>
+			(t.telemetry as TelemetryInformationOptOut).optOutOptions.filter(
+				(o) => o.type === 'ENVIRONMENT_VARIABLE'
+			)
+		)
+		.flat(),
+	{ key: 'TELEMETRY_DISABLED', value: '1' },
+] as TelemetryOptOutEnvironmentVariableOption[];
+
+const optOutCodeList = optOutVariables.map((v) => `${v.key}=${v.value}`).join('\n');
+const optOutCodeListUnix = optOutVariables.map((v) => `export ${v.key}=${v.value}`).join('\n');
+const optOutCodeListWindows = optOutVariables.map((v) => `setx ${v.key} ${v.value} /M`).join('\n');
+
+const PAGE_TITLE = 'How to opt out?';
+---
+
+<ContentLayout title={PAGE_TITLE}>
+	<div slot="start">
+		<h1>{PAGE_TITLE}</h1>
+	</div>
+
+	<div>
+		<Flow>
+			<p>
+				Most tools on <a href="/tools">our list</a> support environment variables to opt out. This allows
+				us to disable most telemetry in one fell swoop.
+			</p>
+			<Code>{optOutCodeList}</Code>
+
+			{
+				optOutToolsWithoutVariables.length > 0 && (
+					<Notification variant="warn">
+						<p>
+							<InlineToolList items={optOutToolsWithoutVariables} />
+							{optOutToolsWithoutVariables.length > 1 ? (
+								<>
+									don’t support environment variables to opt out. See their respective pages to find
+									out how to opt out for those tools.
+								</>
+							) : (
+								<>
+									doesn’t support environment variables to opt out. See its page to find out how to
+									opt out.
+								</>
+							)}
+						</p>
+					</Notification>
+				)
+			}
+
+			<h2>Set variables on macOS and Unix systems</h2>
+			<p>
+				Add the following lines to a .profile file. You’ll have to restart your terminal for it to
+				take effect.
+			</p>
+			<Code>{optOutCodeListUnix}</Code>
+
+			<h2>Set variables on Windows</h2>
+			<p>
+				Run the following script in Command Prompt or PowerShell. You’ll have to restart Command
+				Prompt or PowerShell for it to take effect.
+			</p>
+			<Code>{optOutCodeListWindows}</Code>
+		</Flow>
+	</div>
+</ContentLayout>

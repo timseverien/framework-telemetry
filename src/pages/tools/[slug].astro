@@ -2,7 +2,7 @@
 import { Code } from '@components/Code';
 import { Code as CodeAstro } from 'astro/components';
 import { Flow } from '@components/Flow';
-import { ListWithFallback } from '@components/ListWithFallback';
+import { TextListWithFallback } from '@components/TextListWithFallback';
 import { ScoreOverview } from '@components/ScoreOverview';
 import { VisuallyHidden } from '@components/VisuallyHidden';
 import {
@@ -82,8 +82,8 @@ if (telemetry.type === 'NONE') {
 			<div>
 				<dt>Data collected</dt>
 				<dd>
-					<ListWithFallback
-						list={telemetry.informationType.map((it) =>
+					<TextListWithFallback
+						items={telemetry.informationType.map((it) =>
 							TELEMETRY_INFORMATION_TYPE_LABELS[it].toLowerCase()
 						)}
 						fallback="Unknown"
@@ -94,8 +94,8 @@ if (telemetry.type === 'NONE') {
 			<div>
 				<dt>Scopes</dt>
 				<dd>
-					<ListWithFallback
-						list={telemetry.scopes.map((scope) => TELEMETRY_SCOPE_LABELS[scope])}
+					<TextListWithFallback
+						items={telemetry.scopes.map((scope) => TELEMETRY_SCOPE_LABELS[scope])}
 						fallback="Unknown"
 					/>
 				</dd>
@@ -161,7 +161,9 @@ if (telemetry.type === 'NONE') {
 										you’ll have to add these environment variables there, too.
 									</p>
 
-									<Code>{option.value}</Code>
+									<Code>
+										{option.key}={option.value}
+									</Code>
 								</>
 							);
 						case 'SETTING':
