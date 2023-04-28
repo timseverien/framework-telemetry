@@ -25,7 +25,7 @@ export type TelemetryOptOutOption =
 	| TelemetryOptOutSettingOption;
 
 export type TelemetryResource = {
-	type: 'DECISION' | 'DOCUMENTATION';
+	type: 'DECISION' | 'DOCUMENTATION' | 'SOURCE_CODE';
 	url: string;
 };
 
@@ -70,6 +70,7 @@ export const TELEMETRY_DISCLOSURE_LABELS: { [key in TelemetryDisclosure]: string
 export const TELEMETRY_RESOURCE_TYPE_LABELS: { [key in TelemetryResource['type']]: string } = {
 	DECISION: 'Decision',
 	DOCUMENTATION: 'Documentation',
+	SOURCE_CODE: 'Source code',
 };
 
 export const TELEMETRY_TYPE_LABELS: { [key in TelemetryType]: string } = {

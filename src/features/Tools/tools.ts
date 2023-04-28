@@ -27,6 +27,10 @@ export const TOOLS: Tool[] = [
 					type: 'DOCUMENTATION',
 					url: 'https://docs.astro.build/en/reference/cli-reference/#astro-telemetry',
 				},
+				{
+					type: 'SOURCE_CODE',
+					url: 'https://github.com/withastro/astro/tree/main/packages/telemetry',
+				},
 			],
 			optOutOptions: [
 				{
@@ -81,6 +85,10 @@ export const TOOLS: Tool[] = [
 					type: 'DOCUMENTATION',
 					url: 'https://www.gatsbyjs.com/docs/telemetry/',
 				},
+				{
+					type: 'SOURCE_CODE',
+					url: 'https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-telemetry',
+				},
 			],
 			optOutOptions: [
 				{
@@ -111,11 +119,17 @@ export const TOOLS: Tool[] = [
 		alternatives: [],
 		telemetry: {
 			type: 'OPT_OUT',
-			lastTestedVersion: '4.0.12',
+			lastTestedVersion: '4.0.15',
 			disclosure: 'DOCS',
 			scopes: ['CLI'],
 			informationType: ['DEVICE', 'ENVIRONMENT', 'PROJECT', 'USAGE'],
-			resources: [{ type: 'DOCUMENTATION', url: 'https://docs.brew.sh/Analytics' }],
+			resources: [
+				{ type: 'DOCUMENTATION', url: 'https://docs.brew.sh/Analytics' },
+				{
+					type: 'SOURCE_CODE',
+					url: 'https://github.com/Homebrew/brew/blob/master/Library/Homebrew/utils/analytics.rb',
+				},
+			],
 			optOutOptions: [
 				{
 					type: 'COMMAND',
@@ -167,6 +181,10 @@ export const TOOLS: Tool[] = [
 					type: 'DOCUMENTATION',
 					url: 'https://nextjs.org/telemetry',
 				},
+				{
+					type: 'SOURCE_CODE',
+					url: 'https://github.com/vercel/next.js/tree/canary/packages/next/src/telemetry',
+				},
 			],
 			optOutOptions: [
 				{
@@ -196,6 +214,10 @@ export const TOOLS: Tool[] = [
 				{
 					type: 'DOCUMENTATION',
 					url: 'https://nuxtjs.org/docs/configuration-glossary/configuration-telemetry',
+				},
+				{
+					type: 'SOURCE_CODE',
+					url: 'https://github.com/nuxt/telemetry',
 				},
 			],
 			optOutOptions: [
@@ -255,6 +277,10 @@ export const TOOLS: Tool[] = [
 					type: 'DOCUMENTATION',
 					url: 'https://storybook.js.org/docs/react/configure/telemetry',
 				},
+				{
+					type: 'SOURCE_CODE',
+					url: 'https://github.com/storybookjs/storybook/tree/next/code/lib/telemetry',
+				},
 			],
 			optOutOptions: [
 				{
@@ -302,6 +328,10 @@ export const TOOLS: Tool[] = [
 				{
 					type: 'DOCUMENTATION',
 					url: 'https://code.visualstudio.com/docs/getstarted/telemetry',
+				},
+				{
+					type: 'SOURCE_CODE',
+					url: 'https://github.com/microsoft/vscode/tree/main/src/vs/platform/telemetry',
 				},
 			],
 			optOutOptions: [{ type: 'SETTING', value: '"telemetry.telemetryLevel": "off"' }],
