@@ -36,7 +36,9 @@ const optOutVariables = [
 
 const optOutCodeList = optOutVariables.map((v) => `${v.key}=${v.value}`).join('\n');
 const optOutCodeListUnix = optOutVariables.map((v) => `export ${v.key}=${v.value}`).join('\n');
-const optOutCodeListWindows = optOutVariables.map((v) => `setx ${v.key} ${v.value} /M`).join('\n');
+const optOutCodeListWindows = optOutVariables
+	.map((v) => `[System.Environment]::SetEnvironmentVariable('${v.key}', '${v.value}')`)
+	.join('\n');
 
 const PAGE_TITLE = 'How to opt out?';
 const PAGE_DESCRIPTION = 'Find out how you can opt out of all tools in one fell swoop.';
@@ -84,10 +86,7 @@ const PAGE_DESCRIPTION = 'Find out how you can opt out of all tools in one fell 
 			<Code>{optOutCodeListUnix}</Code>
 
 			<h2>Set variables on Windows</h2>
-			<p>
-				Run the following script in Command Prompt or PowerShell. You’ll have to restart Command
-				Prompt or PowerShell for it to take effect.
-			</p>
+			<p>Run the following script in PowerShell.</p>
 			<Code>{optOutCodeListWindows}</Code>
 		</Flow>
 	</div>
