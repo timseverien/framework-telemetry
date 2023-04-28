@@ -191,6 +191,34 @@ export const TOOLS: Tool[] = [
 		},
 	},
 	{
+		name: 'Netlify CLI',
+		website: 'https://www.netlify.com/products/cli/',
+		alternatives: [],
+		telemetry: {
+			type: 'OPT_OUT',
+			lastTestedVersion: '14.3.1',
+			disclosure: 'DOCS',
+			scopes: ['CLI'],
+			informationType: ['ENVIRONMENT', 'PERSONAL', 'USAGE'],
+			resources: [
+				{
+					type: 'DOCUMENTATION',
+					url: 'https://docs.netlify.com/cli/get-started/#usage-data-collection',
+				},
+				{
+					type: 'SOURCE_CODE',
+					url: 'https://github.com/netlify/cli/tree/main/src/utils/telemetry',
+				},
+			],
+			optOutOptions: [
+				{
+					type: 'COMMAND',
+					value: 'netlify --telemetry-disable',
+				},
+			],
+		},
+	},
+	{
 		name: 'Next.js',
 		website: 'https://nextjs.org',
 		alternatives: [],
