@@ -106,6 +106,30 @@ export const TOOLS: Tool[] = [
 		},
 	},
 	{
+		name: 'Homebrew',
+		website: 'https://docs.brew.sh',
+		alternatives: [],
+		telemetry: {
+			type: 'OPT_OUT',
+			lastTestedVersion: '4.0.12',
+			disclosure: 'DOCS',
+			scopes: ['CLI'],
+			informationType: ['DEVICE', 'ENVIRONMENT', 'PROJECT', 'USAGE'],
+			resources: [{ type: 'DOCUMENTATION', url: 'https://docs.brew.sh/Analytics' }],
+			optOutOptions: [
+				{
+					type: 'COMMAND',
+					value: 'brew analytics off',
+				},
+				{
+					type: 'ENVIRONMENT_VARIABLE',
+					key: 'HOMEBREW_NO_ANALYTICS',
+					value: '1',
+				},
+			],
+		},
+	},
+	{
 		name: 'Hugo',
 		website: 'https://gohugo.io',
 		alternatives: [],
