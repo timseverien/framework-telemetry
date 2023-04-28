@@ -10,6 +10,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: 'Astro',
 		website: 'https://astro.build',
+		alternatives: [],
 		npm: { name: 'astro' },
 		telemetry: {
 			type: 'OPT_OUT',
@@ -43,6 +44,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: 'Create React App',
 		website: 'https://create-react-app.dev',
+		alternatives: [],
 		npm: { name: 'react-scripts' },
 		telemetry: {
 			type: 'NONE',
@@ -52,6 +54,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: 'Eleventy',
 		website: 'https://www.11ty.dev',
+		alternatives: [],
 		npm: { name: '@11ty/eleventy' },
 		telemetry: {
 			type: 'NONE',
@@ -61,6 +64,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: 'Gatsby',
 		website: 'https://www.gatsbyjs.com',
+		alternatives: [],
 		npm: { name: 'gatsby' },
 		telemetry: {
 			type: 'OPT_OUT',
@@ -94,6 +98,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: 'Hexo',
 		website: 'https://hexo.io',
+		alternatives: [],
 		npm: { name: 'hexo' },
 		telemetry: {
 			type: 'NONE',
@@ -103,6 +108,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: 'Hugo',
 		website: 'https://gohugo.io',
+		alternatives: [],
 		telemetry: {
 			type: 'NONE',
 			lastTestedVersion: '0.109.0',
@@ -111,6 +117,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: 'Jekyll',
 		website: 'https://jekyllrb.com',
+		alternatives: [],
 		telemetry: {
 			type: 'NONE',
 			lastTestedVersion: '4.3.1',
@@ -119,6 +126,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: 'Next.js',
 		website: 'https://nextjs.org',
+		alternatives: [],
 		npm: { name: 'next' },
 		telemetry: {
 			type: 'OPT_OUT',
@@ -152,6 +160,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: 'Nuxt.js',
 		website: 'https://nuxtjs.org',
+		alternatives: [],
 		npm: { name: 'nuxt' },
 		telemetry: {
 			type: 'OPT_IN',
@@ -185,6 +194,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: 'Remix',
 		website: 'https://remix.run',
+		alternatives: [],
 		npm: { name: 'remix' },
 		telemetry: {
 			type: 'NONE',
@@ -194,6 +204,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: 'Solid',
 		website: 'https://www.solidjs.com',
+		alternatives: [],
 		npm: { name: 'solid-js' },
 		telemetry: {
 			type: 'NONE',
@@ -203,6 +214,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: 'Storybook',
 		website: 'https://storybook.js.org',
+		alternatives: [],
 		npm: { name: 'storybook' },
 		telemetry: {
 			type: 'OPT_IN',
@@ -240,6 +252,7 @@ export const TOOLS: Tool[] = [
 	{
 		name: 'SvelteKit',
 		website: 'https://kit.svelte.dev',
+		alternatives: [],
 		npm: { name: 'svelte' },
 		telemetry: {
 			type: 'NONE',
@@ -249,6 +262,12 @@ export const TOOLS: Tool[] = [
 	{
 		name: 'Visual Studio Code',
 		website: 'https://code.visualstudio.com',
+		alternatives: [
+			{
+				name: 'VSCodium',
+				website: 'https://vscodium.com',
+			},
+		],
 		telemetry: {
 			type: 'OPT_OUT',
 			lastTestedVersion: '1.74.2',

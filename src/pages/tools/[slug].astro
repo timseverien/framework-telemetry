@@ -1,6 +1,5 @@
 ---
 import { Code } from '@components/Code';
-import { Code as CodeAstro } from 'astro/components';
 import { Flow } from '@components/Flow';
 import { TextListWithFallback } from '@components/TextListWithFallback';
 import { ScoreOverview } from '@components/ScoreOverview';
@@ -26,7 +25,7 @@ export function getStaticPaths() {
 	}));
 }
 
-const { name, website, npm, telemetry } = Astro.props as Tool;
+const { name, website, alternatives, npm, telemetry } = Astro.props as Tool;
 
 const numberFormatter = new Intl.NumberFormat('en');
 const downloadCount = await getToolNpmDownloadCount(Astro.props as Tool);
@@ -56,6 +55,25 @@ if (telemetry.type === 'NONE') {
 				<dt>Website</dt>
 				<dd><a href={website} target="_blank">{getHostname(website)}</a></dd>
 			</div>
+
+			{
+				alternatives && (
+					<div>
+						<dt>Alternatives</dt>
+						<dd>
+							<ul>
+								{alternatives.map((alternative) => (
+									<li>
+										<a href={alternative.website} target="_blank">
+											{alternative.name}
+										</a>
+									</li>
+								))}
+							</ul>
+						</dd>
+					</div>
+				)
+			}
 
 			{
 				npm && (

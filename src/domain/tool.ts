@@ -4,6 +4,7 @@ import type { TelemetryInformation } from './telemetry';
 export type Tool = {
 	name: string;
 	website: string;
+	alternatives: Pick<Tool, 'name' | 'website'>[];
 	npm?: {
 		name: string;
 	};
