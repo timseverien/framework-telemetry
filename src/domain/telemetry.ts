@@ -1,5 +1,11 @@
 export type TelemetryDisclosure = 'NONE' | 'DOCS' | 'INITIALIZATION' | 'INSTALLATION' | 'USAGE';
-export type TelemetryInformationType = 'DEVICE' | 'ENVIRONMENT' | 'PERSONAL' | 'PROJECT' | 'USAGE';
+export type TelemetryInformationType =
+	| 'DEMOGRAPHY'
+	| 'DEVICE'
+	| 'ENVIRONMENT'
+	| 'PERSONAL'
+	| 'PROJECT'
+	| 'USAGE';
 export type TelemetryScope = 'APP' | 'CLI' | 'CLIENT_SIDE' | 'INSTALLATION';
 export type TelemetryType = 'NONE' | 'OPT_IN' | 'OPT_OUT';
 
@@ -80,6 +86,7 @@ export const TELEMETRY_TYPE_LABELS: { [key in TelemetryType]: string } = {
 };
 
 export const TELEMETRY_INFORMATION_TYPE_LABELS: { [key in TelemetryInformationType]: string } = {
+	DEMOGRAPHY: 'Demography',
 	DEVICE: 'Device',
 	ENVIRONMENT: 'Environment',
 	PERSONAL: 'Personal information',

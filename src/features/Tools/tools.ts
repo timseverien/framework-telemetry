@@ -8,6 +8,35 @@ export const getResourcesSorted = (resources: TelemetryResource[]) =>
 
 export const TOOLS: Tool[] = [
 	{
+		name: '.NET CLI',
+		website: 'https://learn.microsoft.com/en-us/dotnet/core/tools/telemetry',
+		alternatives: [],
+		telemetry: {
+			type: 'OPT_OUT',
+			lastTestedVersion: '7.0.5',
+			disclosure: 'USAGE',
+			scopes: ['CLI'],
+			informationType: ['DEVICE', 'DEMOGRAPHY', 'ENVIRONMENT', 'PROJECT', 'USAGE'],
+			resources: [
+				{
+					type: 'DOCUMENTATION',
+					url: 'https://learn.microsoft.com/en-us/dotnet/core/tools/telemetry',
+				},
+				{
+					type: 'SOURCE_CODE',
+					url: 'https://github.com/dotnet/sdk/tree/main/src/Cli/dotnet/Telemetry',
+				},
+			],
+			optOutOptions: [
+				{
+					type: 'ENVIRONMENT_VARIABLE',
+					key: 'DOTNET_CLI_TELEMETRY_OPTOUT',
+					value: '1',
+				},
+			],
+		},
+	},
+	{
 		name: 'Astro',
 		website: 'https://astro.build',
 		alternatives: [],
