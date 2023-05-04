@@ -394,4 +394,26 @@ export const TOOLS: Tool[] = [
 			optOutOptions: [{ type: 'SETTING', value: '"telemetry.telemetryLevel": "off"' }],
 		},
 	},
+	{
+		name: 'Zapier Platform CLI',
+		website: 'https://platform.zapier.com/cli_docs/docs',
+		npm: { name: 'zapier-platform-cli' },
+		alternatives: [],
+		telemetry: {
+			type: 'OPT_OUT',
+			lastTestedVersion: '14.0.0',
+			disclosure: 'NONE',
+			scopes: ['CLI'],
+			informationType: ['DEVICE', 'ENVIRONMENT', 'USAGE'],
+			resources: [
+				{
+					type: 'SOURCE_CODE',
+					url: 'https://github.com/zapier/zapier-platform/blob/main/packages/cli/src/utils/analytics.js',
+				},
+			],
+			optOutOptions: [
+				{ type: 'ENVIRONMENT_VARIABLE', key: 'DISABLE_ZAPIER_ANALYTICS', value: '1' },
+			],
+		},
+	},
 ];
