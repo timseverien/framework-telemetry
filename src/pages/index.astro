@@ -20,9 +20,12 @@ const toolNpmDownloadMap = new WeakMap(
 	)
 );
 
-const toolsHighlighted = Array.from(toolsThatTrack).sort(
-	(a, b) => (toolNpmDownloadMap.get(b) ?? 0) - (toolNpmDownloadMap.get(a) ?? 0)
-);
+const toolsHighlighted = Array.from(toolsThatTrack)
+	.filter((t) => t.telemetry.type === 'OPT_OUT')
+	.sort((a, b) => (toolNpmDownloadMap.get(b) ?? 0) - (toolNpmDownloadMap.get(a) ?? 0))
+	.slice(0, 9);
+
+console.log(toolsHighlighted.length);
 
 const PAGE_TITLE = site.name;
 ---
