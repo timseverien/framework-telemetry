@@ -11,7 +11,7 @@ export type Tool = {
 	telemetry: TelemetryInformation;
 };
 
-export const getToolSlug = (tool: Tool) => slugify(tool.name.toLowerCase());
+export const getToolSlug = (tool: Tool) => slugify(tool.name.toLowerCase()).replace(/\./g, '');
 
 export const getToolNpmDownloadCount = async (tool: Tool) => {
 	const url = `https://api.npmjs.org/downloads/point/last-week/${tool.npm?.name}`;

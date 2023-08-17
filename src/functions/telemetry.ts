@@ -16,6 +16,7 @@ const disclosureOrder: TelemetryDisclosure[] = [
 const informationTypeOrder: TelemetryInformationType[] = [
 	'PERSONAL',
 	'PROJECT',
+	'DEMOGRAPHY',
 	'DEVICE',
 	'USAGE',
 	'ENVIRONMENT',
